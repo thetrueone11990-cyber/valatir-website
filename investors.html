@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valatir AI — Investor Brief</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090f;--bg1:#0e0e1a;--bg2:#13131f;--bg3:#18182a;
+  --b:rgba(255,255,255,.07);--b2:rgba(255,255,255,.12);
+  --t1:#eeeef5;--t2:#9898b5;--t3:#52526e;
+  --ac:#00f5a0;--ac2:#7c5cfc;
+  --grad:linear-gradient(135deg,#00f5a0,#7c5cfc);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:'Inter',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4}
+@keyframes glow{0%,100%{box-shadow:0 0 30px rgba(0,245,160,.2)}50%{box-shadow:0 0 60px rgba(0,245,160,.4)}}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.97)}}
+@keyframes barGrow{from{height:0}to{height:var(--h)}}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:16px 40px;background:rgba(9,9,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--b)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+.nav-logo-mark{width:34px;height:34px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#000;animation:glow 3s ease-in-out infinite}
+.nav-links{display:flex;gap:28px;margin:0 auto;align-items:center}
+.nav-links a{font-size:14px;color:var(--t2);transition:color .2s;font-weight:500}
+.nav-links a:hover{color:var(--t1)}.nav-links a.active{color:var(--ac)}
+.btn-primary{padding:9px 22px;border-radius:8px;border:none;background:var(--grad);color:#000;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 4s ease infinite}
+
+/* CONFIDENTIAL BANNER */
+.conf-bar{background:rgba(248,113,113,.1);border-bottom:1px solid rgba(248,113,113,.25);padding:10px 40px;text-align:center;font-size:12px;color:#fca5a5;font-weight:600;letter-spacing:.5px;position:fixed;top:0;left:0;right:0;z-index:200}
+body{padding-top:36px}
+
+/* SECTIONS */
+.section{max-width:1100px;margin:0 auto;padding:100px 40px}
+.section-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;border:1px solid var(--b2);font-size:12px;color:var(--t2);font-weight:600;margin-bottom:16px}
+.section-title{font-size:clamp(28px,4vw,48px);font-weight:900;letter-spacing:-2px;margin-bottom:16px;line-height:1.1}
+.section-sub{font-size:16px;color:var(--t2);max-width:600px;line-height:1.75}
+
+/* HERO */
+.hero{padding:180px 40px 60px;max-width:1100px;margin:0 auto;position:relative}
+.hero-glow{position:absolute;top:60px;right:0;width:600px;height:400px;background:radial-gradient(ellipse at 70% 40%,rgba(0,245,160,.1) 0%,transparent 65%);pointer-events:none}
+.private-tag{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:20px;border:1px solid rgba(248,113,113,.3);background:rgba(248,113,113,.08);font-size:13px;color:#fca5a5;font-weight:600;margin-bottom:24px}
+
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+@media(max-width:800px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+.stat-card{background:var(--bg2);border:1px solid var(--b);border-radius:14px;padding:24px}
+.stat-val{font-size:32px;font-weight:900;line-height:1;margin-bottom:6px}
+.stat-lbl{font-size:13px;color:var(--t3);line-height:1.5}
+.stat-note{font-size:11px;color:var(--t3);margin-top:8px;line-height:1.5}
+
+/* ARR CHART */
+.arr-chart{display:flex;gap:16px;align-items:flex-end;height:220px;padding:0 20px;background:var(--bg2);border:1px solid var(--b);border-radius:16px;position:relative;overflow:hidden}
+.arr-chart::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,245,160,.04));pointer-events:none}
+.bar-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;justify-content:flex-end;padding-bottom:16px}
+.bar{width:100%;border-radius:6px 6px 0 0;background:var(--grad);transition:height 1.2s cubic-bezier(.34,1.56,.64,1);position:relative}
+.bar::after{content:attr(data-val);position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;color:var(--ac);white-space:nowrap;font-family:'JetBrains Mono',monospace}
+.bar-year{font-size:11px;color:var(--t3);font-weight:600}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:800px){.two-col{grid-template-columns:1fr}}
+
+/* CARDS */
+.inv-card{background:var(--bg2);border:1px solid var(--b);border-radius:16px;padding:28px}
+.inv-card-title{font-size:18px;font-weight:800;letter-spacing:-.5px;margin-bottom:10px}
+.inv-card-body{font-size:14px;color:var(--t2);line-height:1.8}
+.inv-card.highlight{background:linear-gradient(135deg,rgba(0,245,160,.06),rgba(124,92,252,.06));border-color:rgba(0,245,160,.25)}
+
+/* PARTNERSHIP TIMELINE */
+.tl{display:flex;flex-direction:column;gap:0}
+.tl-item{display:grid;grid-template-columns:80px 1fr;gap:24px;position:relative}
+.tl-item:not(:last-child)::after{content:'';position:absolute;left:39px;top:40px;bottom:-1px;width:2px;background:linear-gradient(180deg,var(--ac),rgba(0,245,160,.1))}
+.tl-year{text-align:right;padding-top:6px}
+.tl-year-num{font-size:12px;font-weight:800;color:var(--ac);font-family:'JetBrains Mono',monospace}
+.tl-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--ac);background:var(--bg);position:absolute;left:32px;top:8px}
+.tl-content{padding:0 0 36px 24px}
+.tl-content h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.tl-content p{font-size:13px;color:var(--t2);line-height:1.7}
+
+/* ASK TABLE */
+.ask-table{width:100%;border-collapse:collapse}
+.ask-table th{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t3);padding:10px 16px;border-bottom:1px solid var(--b);text-align:left}
+.ask-table td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.04);font-size:14px;color:var(--t2);vertical-align:top}
+.ask-table td:first-child{color:var(--t1);font-weight:600;white-space:nowrap}
+.ask-table td .amount{font-size:16px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ask-table tr:last-child td{border-bottom:none}
+
+/* VISION */
+.vision-card{background:linear-gradient(135deg,rgba(124,92,252,.08),rgba(0,245,160,.05));border:1px solid rgba(124,92,252,.25);border-radius:20px;padding:48px;position:relative;overflow:hidden}
+.vision-glow{position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(124,92,252,.15),transparent 70%);pointer-events:none}
+
+/* CONTACT */
+.contact-card{background:var(--bg2);border:1px solid var(--b);border-radius:20px;padding:48px;text-align:center}
+.contact-link{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;border:1px solid rgba(0,245,160,.3);background:rgba(0,245,160,.07);color:var(--ac);font-weight:700;font-size:15px;transition:all .2s;margin-top:20px}
+.contact-link:hover{background:rgba(0,245,160,.14)}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--b2),transparent);max-width:1100px;margin:0 auto;padding:0 40px}
+
+footer{border-top:1px solid var(--b);padding:40px;text-align:center;position:relative;z-index:1}
+.footer-logo{display:flex;align-items:center;gap:8px;justify-content:center;font-weight:800;font-size:18px;margin-bottom:20px}
+.footer-links{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.footer-links a{font-size:13px;color:var(--t3);transition:color .2s}
+.footer-links a:hover{color:var(--t1)}
+.footer-copy{font-size:12px;color:var(--t3)}
+.relative{position:relative;z-index:1}
+</style>
+</head>
+<body>
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center">
+  <div style="width:min(440px,90vw);background:#080808;border:1px solid rgba(0,245,160,.2);border-radius:20px;padding:44px;text-align:center">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,245,160,.6);margin-bottom:20px">Private — Investor Access</div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-1px;color:#eeeef5;margin-bottom:8px">Valatir AI</div>
+    <div style="font-size:14px;color:#52526e;margin-bottom:32px">Investor & partner brief · Confidential</div>
+    <input id="gate-input" type="password" placeholder="Access code"
+      style="width:100%;padding:13px 16px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#eeeef5;font-size:15px;outline:none;text-align:center;letter-spacing:.15em;font-family:inherit;margin-bottom:10px">
+    <div id="gate-err" style="font-size:12px;color:#f87171;height:18px;margin-bottom:10px"></div>
+    <button onclick="checkGate()" style="width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,#00f5a0,#7c5cfc);color:#000;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:inherit">Enter →</button>
+    <div style="margin-top:20px;font-size:11px;color:#2a2a40">To request access: <a href="mailto:gabriel@valatir.ai" style="color:rgba(0,245,160,.6)">gabriel@valatir.ai</a></div>
+  </div>
+</div>
+<script>
+(function(){
+  // Check if already authenticated this session
+  if(sessionStorage.getItem('valatir_inv') === 'granted'){
+    document.getElementById('gate').style.display = 'none';
+  }
+  document.getElementById('gate-input').addEventListener('keydown', function(e){
+    if(e.key === 'Enter') checkGate();
+  });
+})();
+function checkGate(){
+  const val = document.getElementById('gate-input').value.trim();
+  const err = document.getElementById('gate-err');
+  // Password: valatir2026
+  // Change this to whatever you prefer — it's obfuscated here
+  const h = val.split('').reduce((a,c)=>((a<<5)-a)+c.charCodeAt(0)|0,0);
+  if(h === -1355060728){ // hash of "valatir2026"
+    sessionStorage.setItem('valatir_inv','granted');
+    document.getElementById('gate').style.display='none';
+  } else {
+    err.textContent = 'Incorrect access code.';
+    document.getElementById('gate-input').value = '';
+    document.getElementById('gate-input').focus();
+    setTimeout(()=>err.textContent='', 3000);
+  }
+}
+</script>
+
+
+<!-- CONFIDENTIAL BANNER -->
+<div class="conf-bar">🔒 CONFIDENTIAL — For authorised recipients only. Not for public distribution. May 2026.</div>
+
+<!-- NAV -->
+<nav><a href="/" class="nav-logo"><img src="data:image/png;base64,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" alt="Valatir" style="height:22px;width:auto;object-fit:contain;mix-blend-mode:screen"></a><div class="nav-links"><a href="/features">Features</a><a href="/pricing">Pricing</a><a href="/enterprise">Enterprise</a><a href="/developers">Developers</a><a href="/build">Live Build</a></div><div style="display:flex;gap:10px"><a href="/#waitlist"><button class="btn-ghost">Join waitlist</button></a><a href="/#waitlist"><button class="btn-primary">Early access →</button></a></div></nav>
+
+<!-- HERO -->
+<div class="hero relative">
+  <div class="hero-glow"></div>
+  <div class="private-tag">🔒 Private · Not indexed · Linked from pitch deck only</div>
+  <h1 style="font-size:clamp(40px,6vw,72px);font-weight:900;line-height:1.06;letter-spacing:-2.5px;margin-bottom:20px;max-width:800px">
+    Building a <span class="grad-text">CA$14M ARR</span><br>AI platform for under CA$500.
+  </h1>
+  <p style="font-size:18px;color:var(--t2);line-height:1.75;max-width:620px">
+    Valatir AI is a desktop-first, multi-provider AI platform built autonomously by an AI agent. One founder. No team. August 2026 launch. This page covers the financial model, the Anthropic partnership thesis, and what we're raising.
+  </p>
+  <!-- STATS ROW -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-val"><span class="grad-text">CA$74</span></div>
+      <div class="stat-lbl">Total AI API spend to build 44 of 305 files</div>
+      <div class="stat-note">vs. CA$200K–$500K estimated cost with a human engineering team</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val"><span class="grad-text">415</span></div>
+      <div class="stat-lbl">Tests passing across 4 completed sprints</div>
+      <div class="stat-note">Zero regressions. Each sprint is fully test-verified before merging.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val"><span class="grad-text">Aug 1</span></div>
+      <div class="stat-lbl">Commercial launch date</div>
+      <div class="stat-note">35 sprints · 305 files · Valkyrie building continuously since May 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val"><span class="grad-text">6.1M</span></div>
+      <div class="stat-lbl">Claude tokens consumed building Valatir</div>
+      <div class="stat-note">Claude is building the platform that distributes Claude to 25,000+ users.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ARR MODEL -->
+<div class="section">
+  <div class="section-badge">📈 Financial Model</div>
+  <h2 class="section-title">The path to CA$14M ARR.</h2>
+  <p class="section-sub" style="margin-bottom:48px">Conservative projections based on comparable multi-provider AI platform growth curves. All figures in Canadian dollars.</p>
+
+  <div class="arr-chart" id="arrChart" style="margin-bottom:40px">
+    <div class="bar-wrap">
+      <div class="bar" style="height:0;--h:6%" data-val="CA$200K" data-target="6"></div>
+      <div class="bar-year">2026</div>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar" style="height:0;--h:11%" data-val="CA$764K" data-target="11"></div>
+      <div class="bar-year">2027</div>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar" style="height:0;--h:29%" data-val="CA$3M" data-target="29"></div>
+      <div class="bar-year">2028</div>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar" style="height:0;--h:57%" data-val="CA$8M" data-target="57"></div>
+      <div class="bar-year">2029</div>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar" style="height:0;--h:100%" data-val="CA$14M" data-target="100"></div>
+      <div class="bar-year">2030</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div style="font-size:13px;font-weight:700;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px">Year-by-year breakdown</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="padding:16px;background:var(--bg2);border:1px solid var(--b);border-radius:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:700;font-size:14px">2026 · Pre-launch</span>
+            <span class="grad-text" style="font-weight:800;font-size:15px">CA$200K</span>
+          </div>
+          <div style="font-size:12px;color:var(--t3);line-height:1.6">Beta cohort. Early access users paying reduced rates. 3 months Pro free means first real revenue from converted users in Q4 2026.</div>
+        </div>
+        <div style="padding:16px;background:var(--bg2);border:1px solid var(--b);border-radius:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:700;font-size:14px">2027 · Launch year</span>
+            <span class="grad-text" style="font-weight:800;font-size:15px">CA$764K</span>
+          </div>
+          <div style="font-size:12px;color:var(--t3);line-height:1.6">500 Pro users (CA$174K) + 200 Studio (CA$166K) + 100 Team seats (CA$119K) + Managed Keys add-on revenue (CA$305K). 1,000 paying customers by Q2 2027.</div>
+        </div>
+        <div style="padding:16px;background:var(--bg2);border:1px solid var(--b);border-radius:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:700;font-size:14px">2028 · Tier 2 expansion</span>
+            <span class="grad-text" style="font-weight:800;font-size:15px">CA$3M</span>
+          </div>
+          <div style="font-size:12px;color:var(--t3);line-height:1.6">Professional workspaces ship (audio, video, advanced image). Team tier grows. IRAP funding covers 60–80% of development costs. 5,000+ paying users.</div>
+        </div>
+        <div style="padding:16px;background:var(--bg2);border:1px solid var(--b);border-radius:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:700;font-size:14px">2029 · Plugin marketplace</span>
+            <span class="grad-text" style="font-weight:800;font-size:15px">CA$8M</span>
+          </div>
+          <div style="font-size:12px;color:var(--t3);line-height:1.6">SDK ships. Third-party plugin marketplace live. Network effects begin — plugins attract users attract developers. 15,000+ active users.</div>
+        </div>
+        <div style="padding:16px;background:linear-gradient(135deg,rgba(0,245,160,.06),rgba(124,92,252,.06));border:1px solid rgba(0,245,160,.2);border-radius:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:700;font-size:14px">2030 · Platform maturity</span>
+            <span class="grad-text" style="font-weight:800;font-size:15px">CA$14M</span>
+          </div>
+          <div style="font-size:12px;color:var(--t3);line-height:1.6">25,000+ active users. Acquisition at 5–10× revenue (CA$70M–$140M) or Series A at CA$50M+ valuation. Platform continues operating profitably at any outcome.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:13px;font-weight:700;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px">Unit economics</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="padding:14px 16px;background:var(--bg2);border:1px solid var(--b);border-radius:10px;display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--t2)">Blended ARPU (2027)</span>
+          <span style="font-size:14px;font-weight:700;color:var(--t1)">CA$63.67/mo</span>
+        </div>
+        <div style="padding:14px 16px;background:var(--bg2);border:1px solid var(--b);border-radius:10px;display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--t2)">Gross margin (software)</span>
+          <span style="font-size:14px;font-weight:700;color:var(--ac)">~85%</span>
+        </div>
+        <div style="padding:14px 16px;background:var(--bg2);border:1px solid var(--b);border-radius:10px;display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--t2)">Managed Keys margin</span>
+          <span style="font-size:14px;font-weight:700;color:var(--t1)">~18% (pool mgmt fee)</span>
+        </div>
+        <div style="padding:14px 16px;background:var(--bg2);border:1px solid var(--b);border-radius:10px;display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--t2)">Build cost per sprint</span>
+          <span style="font-size:14px;font-weight:700;color:var(--t1)">~CA$2/sprint (API)</span>
+        </div>
+        <div style="padding:14px 16px;background:var(--bg2);border:1px solid var(--b);border-radius:10px;display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--t2)">CAC (paid, estimated)</span>
+          <span style="font-size:14px;font-weight:700;color:var(--t1)">CA$40–80</span>
+        </div>
+        <div style="padding:14px 16px;background:var(--bg2);border:1px solid var(--b);border-radius:10px;display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--t2)">Payback period (Pro)</span>
+          <span style="font-size:14px;font-weight:700;color:var(--ac)">1.5–2.8 months</span>
+        </div>
+        <div style="padding:14px 16px;background:var(--bg2);border:1px solid var(--b);border-radius:10px;display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--t2)">Infrastructure cost (2027)</span>
+          <span style="font-size:14px;font-weight:700;color:var(--t1)">~CA$12K/yr (Cloudflare)</span>
+        </div>
+        <div style="padding:14px 16px;background:var(--bg2);border:1px solid var(--b);border-radius:10px;display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--t2)">Billing platform</span>
+          <span style="font-size:14px;font-weight:700;color:var(--t1)">LemonSqueezy (MoR)</span>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding:16px;background:rgba(0,245,160,.05);border:1px solid rgba(0,245,160,.2);border-radius:10px;font-size:13px;color:var(--t2);line-height:1.7">
+        <strong style="color:var(--ac)">The asymmetry:</strong> Every Valatir feature is generated by AI, not written by engineers. As models improve and tokens get cheaper, the cost to add features drops while the value delivered stays the same. The software improves for free.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ANTHROPIC PARTNERSHIP -->
+<div class="section">
+  <div class="section-badge">🤝 Strategic Partnership</div>
+  <h2 class="section-title">The Anthropic angle.</h2>
+  <p class="section-sub" style="margin-bottom:48px">Valatir is not just a Claude customer. It is a distribution channel and, eventually, a data flywheel that makes Claude better at professional tool-use.</p>
+
+  <div class="two-col" style="margin-bottom:48px">
+    <div class="inv-card highlight">
+      <div class="inv-card-title">The core insight</div>
+      <div class="inv-card-body">Training AI to use professional tools is expensive and nearly impossible at scale. Getting 25,000 professionals to use Claude inside a DAW, PCB editor, 3D viewport, and automation platform — and logging every correction, retry, and success — generates interaction data Anthropic cannot generate internally.<br><br>Internet-scraped text doesn't contain a music producer correcting Claude's reverb settings. Valatir's users will.</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-card-title">Current relationship</div>
+      <div class="inv-card-body">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:10px"><div style="width:6px;height:6px;border-radius:50%;background:var(--ac);margin-top:6px;flex-shrink:0"></div><div><strong style="color:var(--t1)">Active API customer</strong> — 703 calls, 6.1M tokens consumed building Valatir itself. Claude is writing its own distribution channel.</div></div>
+          <div style="display:flex;gap:10px"><div style="width:6px;height:6px;border-radius:50%;background:var(--ac);margin-top:6px;flex-shrink:0"></div><div><strong style="color:var(--t1)">Startup credits application sent</strong> — USD $10K–$25K requested to complete the 31 remaining build sprints.</div></div>
+          <div style="display:flex;gap:10px"><div style="width:6px;height:6px;border-radius:50%;background:var(--t3);margin-top:6px;flex-shrink:0"></div><div style="color:var(--t3)">Formal training data partnership — proposed for 2029, after 25,000+ active professional users generating interaction data at scale.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:14px;font-weight:700;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:24px">Partnership progression</div>
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-year"><div class="tl-year-num">2026</div></div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>API credits + default routing</h4>
+        <p>Valatir routes all complex tasks to Claude as default provider. Startup credits fund the build. Every Pro user is a net-new Claude user generating meaningful token volumes. No humans required to acquire them.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year"><div class="tl-year-num">2027</div></div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Distribution scale</h4>
+        <p>1,000+ paying users, each using Claude for their most demanding tasks. Valatir becomes a meaningful Claude distribution channel — new professional users who wouldn't otherwise encounter Claude directly.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year"><div class="tl-year-num">2028</div></div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Tool-use data accumulation</h4>
+        <p>Tier 3 plugin SDK ships. Third parties build professional tool connectors. Valatir users are now using Claude inside DAWs, PCB editors, 3D viewports, and automation pipelines — generating interaction data at the professional tool-use frontier.</p>
+      </div>
+    </div>
+    <div class="tl-item" style="padding-bottom:0">
+      <div class="tl-year"><div class="tl-year-num">2029</div></div>
+      <div class="tl-dot"></div>
+      <div class="tl-content" style="padding-bottom:0">
+        <h4>Formal training data partnership</h4>
+        <p>25,000+ professionals. Proprietary interaction data from edge-case tool usage that doesn't exist in any training corpus. Formal data licensing agreement with Anthropic — structured, consent-based, valuable to both parties.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- VALKYRONIX VISION -->
+<div class="section">
+  <div class="section-badge">🌌 Long-Range Vision</div>
+  <h2 class="section-title">Valatir funds something bigger.</h2>
+
+  <div class="vision-card">
+    <div class="vision-glow"></div>
+    <div style="position:relative;z-index:1">
+      <div style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#a78bfa;margin-bottom:16px">The Valkyronix Context</div>
+      <div style="font-size:22px;font-weight:900;letter-spacing:-1px;margin-bottom:20px;line-height:1.3;max-width:700px">
+        Valatir is the commercial engine. The revenue it generates funds a parallel long-range civilisation architecture project — Valkyronix — targeting institutional infrastructure design across multi-decade time horizons.
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px">
+        <div style="padding:20px;background:rgba(0,0,0,.3);border-radius:12px;border:1px solid rgba(255,255,255,.08)">
+          <div style="font-size:22px;margin-bottom:8px">🏛️</div>
+          <div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:6px">Institutional Architecture</div>
+          <div style="font-size:12px;color:var(--t3);line-height:1.6">Governance models, economic frameworks, and cultural infrastructure designed for civilisational-scale coordination.</div>
+        </div>
+        <div style="padding:20px;background:rgba(0,0,0,.3);border-radius:12px;border:1px solid rgba(255,255,255,.08)">
+          <div style="font-size:22px;margin-bottom:8px">🌍</div>
+          <div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:6px">Multi-Decade Planning</div>
+          <div style="font-size:12px;color:var(--t3);line-height:1.6">60-document planning corpus covering economic projections, expansion strategy, and technology roadmaps to 2070+.</div>
+        </div>
+        <div style="padding:20px;background:rgba(0,0,0,.3);border-radius:12px;border:1px solid rgba(255,255,255,.08)">
+          <div style="font-size:22px;margin-bottom:8px">⚡</div>
+          <div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:6px">AI-Native Development</div>
+          <div style="font-size:12px;color:var(--t3);line-height:1.6">Both Valatir and Valkyronix are designed and built entirely using AI agents. The methodology is itself the proof-of-concept.</div>
+        </div>
+      </div>
+      <div style="margin-top:24px;font-size:13px;color:var(--t3);line-height:1.7;max-width:700px">
+        Investors in Valatir are funding the first commercial stage of this longer project. Valatir reaching CA$14M ARR is the proof point that AI-native development can build large-scale commercial software. The same methodology applied to institutional design is what Valkyronix develops — with Valatir's revenue providing independence from external capital requirements.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- THE ASK -->
+<div class="section">
+  <div class="section-badge">💰 The Ask</div>
+  <h2 class="section-title">What we're raising.</h2>
+  <p class="section-sub" style="margin-bottom:40px">Non-dilutive funding is the first priority. Angel and pre-seed investment available for the right partner.</p>
+
+  <div style="background:var(--bg2);border:1px solid var(--b);border-radius:16px;overflow:hidden;margin-bottom:32px">
+    <table class="ask-table">
+      <thead><tr><th>Source</th><th>Amount</th><th>Type</th><th>Status / Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Anthropic Startup Credits</td>
+          <td><span class="amount">USD $10K–$25K</span></td>
+          <td>API credits</td>
+          <td style="font-size:13px;color:var(--t3)">Application sent May 2026. Covers remaining 31 build sprints (~50M tokens).</td>
+        </tr>
+        <tr>
+          <td>AWS Activate</td>
+          <td><span class="amount">USD $1K–$5K</span></td>
+          <td>Cloud credits</td>
+          <td style="font-size:13px;color:var(--t3)">Apply now (founders tier). Upgrade to portfolio tier via MaRS Discovery District.</td>
+        </tr>
+        <tr>
+          <td>Google Cloud Startup</td>
+          <td><span class="amount">USD $2K–$200K</span></td>
+          <td>Cloud credits</td>
+          <td style="font-size:13px;color:var(--t3)">Gemini API credits directly applicable to Valatir's provider stack.</td>
+        </tr>
+        <tr>
+          <td>SR&ED Tax Credit</td>
+          <td><span class="amount">CA$21K–$60K</span></td>
+          <td>Cash refund</td>
+          <td style="font-size:13px;color:var(--t3)">35% of qualifying R&D expenses. File with first corporate return after CCPC incorporation completes.</td>
+        </tr>
+        <tr>
+          <td>NRC IRAP</td>
+          <td><span class="amount">CA$50K–$250K</span></td>
+          <td>Grant</td>
+          <td style="font-size:13px;color:var(--t3)">Apply for Tier 2 development work (Q4 2026). 60–80% of eligible costs covered.</td>
+        </tr>
+        <tr>
+          <td>Angel / Pre-Seed</td>
+          <td><span class="amount">CA$150K–$500K</span></td>
+          <td>Equity</td>
+          <td style="font-size:13px;color:var(--t3)">Bridge to CA$3M ARR. Covers first developer hire, launch marketing, working capital. Equity % negotiable.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="padding:20px;background:rgba(0,245,160,.05);border:1px solid rgba(0,245,160,.15);border-radius:12px;font-size:14px;color:var(--t2);line-height:1.75;max-width:700px">
+    <strong style="color:var(--ac)">Important context:</strong> Valatir does not need external capital to reach launch. The build is funded by API credits. The ask here is acceleration capital — getting to 1,000 paying users faster by investing in distribution, not development. At CA$29/user/month blended, every 100 users acquired covers CA$2,900/month in operating cost.
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section">
+  <div class="contact-card">
+    <div style="font-size:40px;margin-bottom:16px">👋</div>
+    <h3 style="font-size:28px;font-weight:900;letter-spacing:-1px;margin-bottom:12px">Talk to Gabriel directly.</h3>
+    <p style="font-size:15px;color:var(--t2);line-height:1.7;max-width:500px;margin:0 auto">
+      No middlemen, no pitch calls with associates first. If you're an investor, a fund, or a strategic partner with a genuine interest in Valatir — email directly and expect a reply within 24 hours.
+    </p>
+    <a href="mailto:gabriel@valatir.ai?subject=Investor%20enquiry%20—%20Valatir%20AI" class="contact-link">
+      📧 gabriel@valatir.ai
+    </a>
+    <div style="margin-top:20px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <div style="font-size:13px;color:var(--t3)">📍 Ontario, Canada</div>
+      <div style="font-size:13px;color:var(--t3)">🏢 Incorporating as Ontario CCPC</div>
+      <div style="font-size:13px;color:var(--t3)">📅 Launch: August 1, 2026</div>
+    </div>
+    <div style="margin-top:28px;padding:16px;background:var(--bg3);border:1px solid var(--b);border-radius:10px;font-size:12px;color:var(--t3);max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6">
+      Full investor data room, financial model spreadsheet, and pitch deck (PPTX) available on request. NDA available but not required for initial conversation.
+    </div>
+  </div>
+</div>
+
+<footer><div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:16px"><img src="data:image/png;base64,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" alt="Valatir" style="height:22px;width:auto;object-fit:contain;mix-blend-mode:screen"></div><div class="footer-links"><a href="/">Home</a><a href="/features">Features</a><a href="/pricing">Pricing</a><a href="/enterprise">Enterprise</a><a href="/developers">Developers</a><a href="/build">Live Build</a><a href="/about">Manifesto</a><a href="mailto:gabriel@valatir.ai">Contact</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div><div class="footer-copy">© 2026 Valatir AI · Ontario, Canada · valatir.com</div></footer>
+
+<script>
+// Animate ARR bars on scroll
+const bars = document.querySelectorAll('.bar');
+const chartObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    bars.forEach(bar => {
+      const target = bar.dataset.target;
+      setTimeout(() => { bar.style.height = target + '%'; }, 200);
+    });
+    chartObs.disconnect();
+  }
+}, {threshold: 0.3});
+chartObs.observe(document.getElementById('arrChart'));
+
+// scroll-hide nav
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY, nav = document.querySelector('nav');
+  nav.style.transform = y > lastY && y > 100 ? 'translateY(-100%)' : 'translateY(0)';
+  nav.style.transition = 'transform .3s ease';
+  lastY = y;
+});
+
+// fade-in
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }});
+},{threshold:.1});
+document.querySelectorAll('.stat-card,.inv-card,.tl-item').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(16px)'; el.style.transition='opacity .5s ease, transform .5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

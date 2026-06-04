@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Valatir AI — One Platform. Every AI Tool You'll Ever Need.</title>
+<meta name="description" content="20+ professional workspaces, 200+ AI models, a platform that improves itself. Replace 12 subscriptions with one. CA$29/month.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#000;--bg2:#080808;--bg3:#0f0f0f;
+  --b:rgba(255,255,255,.07);--b2:rgba(255,255,255,.12);
+  --t1:#eeeef5;--t2:#9898b5;--t3:#52526e;
+  --ac:#00f5a0;--ac2:#7c5cfc;
+  --grad:linear-gradient(135deg,#00f5a0,#7c5cfc);
+  --amber:#f59e0b;--green:#3dd68c;--red:#f87171;--blue:#60a5fa;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:'Inter',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+@keyframes glow{0%,100%{box-shadow:0 0 30px rgba(0,245,160,.18)}50%{box-shadow:0 0 60px rgba(0,245,160,.38)}}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.9)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:16px 40px;background:rgba(0,0,0,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--b);transition:transform .3s ease}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:28px;margin:0 auto;align-items:center}
+.nav-links a{font-size:14px;color:var(--t2);transition:color .2s;font-weight:500}
+.nav-links a:hover{color:var(--t1)}
+.btn-ghost{padding:8px 20px;border-radius:8px;border:1px solid var(--b2);color:var(--t2);font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;background:transparent;font-family:inherit}
+.btn-ghost:hover{border-color:var(--ac);color:var(--ac)}
+.btn-primary{padding:9px 22px;border-radius:8px;border:none;background:var(--grad);color:#000;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 4s ease infinite}
+.relative{position:relative;z-index:1}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.section-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;border:1px solid var(--b2);font-size:12px;color:var(--t2);font-weight:600;margin-bottom:16px}
+.section-title{font-size:clamp(28px,4vw,48px);font-weight:900;letter-spacing:-1.5px;margin-bottom:14px;line-height:1.1}
+.section-sub{font-size:16px;color:var(--t2);line-height:1.75;max-width:580px}
+.section-center{text-align:center}.section-center .section-sub{margin:0 auto}
+
+/* TICKER */
+.ticker-wrap{overflow:hidden;padding:18px 0;border-top:1px solid var(--b);border-bottom:1px solid var(--b);background:rgba(0,0,0,.4);position:relative;z-index:1}
+.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.ticker-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.ticker-wrap::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+.ticker{display:flex;gap:0;animation:ticker 50s linear infinite;width:max-content}
+.ticker:hover{animation-play-state:paused}
+.tick-item{display:inline-flex;align-items:center;gap:8px;padding:0 26px;font-size:13px;color:var(--t3);white-space:nowrap;font-weight:500}
+.tick-dot{width:4px;height:4px;border-radius:50%;background:var(--ac);flex-shrink:0}
+
+/* APP FRAME */
+.app-frame{background:#050508;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;box-shadow:0 48px 120px rgba(0,0,0,.8)}
+.app-frame-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#080808;border-bottom:1px solid rgba(255,255,255,.07)}
+.app-dot{width:12px;height:12px;border-radius:50%}
+.app-layout{display:grid;grid-template-columns:196px 1fr;min-height:380px}
+.app-sidebar-demo{background:#040404;border-right:1px solid rgba(255,255,255,.06);padding:16px 0}
+.app-sb-section{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);padding:6px 16px 4px}
+.app-sb-item{display:flex;align-items:center;gap:10px;padding:8px 16px;font-size:12px;color:var(--t2)}
+.app-sb-item.active{background:rgba(255,255,255,.04);color:var(--t1);border-left:2px solid var(--ac)}
+.app-sb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.app-main-demo{padding:24px;display:flex;flex-direction:column;gap:14px}
+.app-stat-card{background:#080808;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px}
+.app-insight{background:rgba(0,245,160,.04);border:1px solid rgba(0,245,160,.12);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px}
+
+/* PROJECT CARDS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:1100px;margin:56px auto 0}
+.proj-card{background:var(--bg2);border:1px solid var(--b);border-radius:16px;overflow:hidden;transition:all .25s}
+.proj-card:hover{border-color:var(--b2);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.proj-card-bar{height:3px}
+.proj-card-top{padding:22px 22px 0}
+.proj-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
+.proj-name{font-size:17px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.proj-desc{font-size:12px;color:var(--t2);line-height:1.65;margin-bottom:14px}
+.proj-ws-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:12px 22px;background:rgba(255,255,255,.025);border-top:1px solid var(--b)}
+.proj-ws-chip{display:flex;align-items:center;gap:5px;padding:4px 9px;background:var(--bg3);border:1px solid var(--b);border-radius:5px;font-size:11px;font-weight:600;color:var(--t2)}
+.proj-arrow{color:var(--t3);font-size:10px}
+
+/* WINDOW SYSTEM */
+.window-demo{background:#050508;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);max-width:900px;margin:48px auto 0}
+.wd-bar{display:flex;align-items:center;gap:8px;padding:11px 16px;background:#080808;border-bottom:1px solid rgba(255,255,255,.07)}
+.wd-layout{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;height:340px}
+.wd-pane{border:0.5px solid rgba(255,255,255,.07);padding:14px;display:flex;flex-direction:column;gap:8px;overflow:hidden;position:relative}
+.wd-pane-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;background:rgba(255,255,255,.04);border-radius:4px;align-self:flex-start}
+.wd-pane-content{font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--t2);flex:1;overflow:hidden}
+.wd-helix-bar{position:absolute;bottom:0;left:0;right:0;background:rgba(0,245,160,.06);border-top:1px solid rgba(0,245,160,.15);padding:6px 12px;font-size:9px;color:var(--ac);font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:6px}
+
+/* MODELS */
+.models-scroll{display:flex;gap:10px;overflow-x:auto;padding:40px 0 16px;scrollbar-width:none}
+.models-scroll::-webkit-scrollbar{display:none}
+.model-card{flex-shrink:0;width:164px;background:var(--bg2);border:1px solid var(--b);border-radius:12px;padding:16px;transition:all .2s}
+.model-card:hover{border-color:var(--b2);transform:translateY(-2px)}
+.model-provider{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:7px}
+.model-name{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:3px}
+.model-desc{font-size:11px;color:var(--t3);line-height:1.5;margin-bottom:10px}
+.model-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+.tag-free{background:rgba(0,245,160,.1);color:var(--ac);border:1px solid rgba(0,245,160,.2)}
+.tag-pro{background:rgba(124,92,252,.1);color:#b39dfc;border:1px solid rgba(124,92,252,.2)}
+.tag-studio{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+
+/* WORKSPACES */
+.ws-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;max-width:1100px;margin:56px auto 0}
+.ws-card{background:var(--bg2);border:1px solid var(--b);border-radius:14px;padding:24px;transition:all .25s;position:relative;overflow:hidden}
+.ws-card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .25s;pointer-events:none}
+.ws-card:hover{border-color:var(--b2);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.35)}
+.ws-card:hover::before{opacity:.03}
+.ws-icon{font-size:26px;margin-bottom:12px}
+.ws-name{font-size:15px;font-weight:700;margin-bottom:5px;color:var(--t1)}
+.ws-desc{font-size:12px;color:var(--t2);line-height:1.6}
+.ws-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}
+.ws-chip{padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;background:rgba(255,255,255,.06);color:var(--t3)}
+.free-badge{display:inline-block;padding:1px 7px;border-radius:4px;font-size:9px;font-weight:700;background:rgba(0,245,160,.1);color:var(--ac);border:1px solid rgba(0,245,160,.2);margin-left:6px;vertical-align:middle}
+
+/* HELIX TERMINAL */
+.helix-terminal{background:#040404;border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden}
+.ht-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#070707;border-bottom:1px solid rgba(255,255,255,.06)}
+.ht-dot{width:11px;height:11px;border-radius:50%}
+.ht-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);margin:0 auto}
+.ht-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:2}
+.ht-line{display:flex;gap:8px}
+.ht-ok{color:var(--green)}.ht-info{color:#93c5fd}.ht-dim{color:var(--t3)}.ht-warn{color:var(--amber)}
+.ht-cursor{display:inline-block;width:7px;height:13px;background:var(--ac);vertical-align:middle;animation:blink 1s infinite;margin-left:2px}
+
+/* ROTATION */
+.rot-card{background:var(--bg2);border:1px solid var(--b);border-radius:14px;padding:24px}
+.rot-always{background:rgba(0,245,160,.04);border:1px solid rgba(0,245,160,.15);border-radius:14px;padding:24px}
+.rot-tool{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.rot-tool:last-of-type{border-bottom:none}
+
+/* BUILD / PRICING / CTA */
+.build-teaser{background:linear-gradient(135deg,rgba(0,245,160,.04),rgba(124,92,252,.06));border:1px solid rgba(0,245,160,.18);border-radius:20px;padding:44px 48px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden;max-width:900px;margin:0 auto}
+.pp-card{background:var(--bg2);border:1px solid var(--b);border-radius:14px;padding:24px;transition:all .2s}
+.pp-card.featured{background:linear-gradient(135deg,rgba(0,245,160,.06),rgba(124,92,252,.06));border-color:rgba(0,245,160,.25)}
+.wl-card{max-width:660px;margin:0 auto;background:linear-gradient(135deg,rgba(0,245,160,.05),rgba(124,92,252,.07));border:1px solid rgba(0,245,160,.2);border-radius:24px;padding:60px 48px;text-align:center;position:relative;overflow:hidden}
+.wl-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:300px;background:radial-gradient(ellipse,rgba(0,245,160,.14),transparent 70%);pointer-events:none}
+.wl-form{display:flex;gap:10px;max-width:420px;margin:0 auto 12px}
+.wl-input{flex:1;padding:12px 16px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--b2);color:var(--t1);font-size:14px;outline:none;font-family:inherit}
+.wl-input:focus{border-color:rgba(0,245,160,.4)}
+.wl-btn{padding:12px 20px;border-radius:9px;background:var(--grad);color:#000;font-size:14px;font-weight:700;border:none;cursor:pointer;white-space:nowrap;font-family:inherit}
+
+footer{border-top:1px solid var(--b);padding:40px;text-align:center;position:relative;z-index:1}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.footer-links a{font-size:13px;color:var(--t3)}.footer-links a:hover{color:var(--t1)}
+
+@media(max-width:800px){
+  .app-layout{grid-template-columns:1fr}.app-sidebar-demo{display:none}
+  .build-teaser{grid-template-columns:1fr;padding:28px}
+  .wd-layout{grid-template-columns:1fr;height:auto}
+  .wl-form{flex-direction:column}.wl-btn{width:100%}
+  nav{padding:14px 20px}
+  .nav-links{display:none}
+}
+</style>
+</head><body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="data:image/png;base64,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" alt="Valatir" style="height:22px;width:auto;object-fit:contain;mix-blend-mode:screen"></a>
+  <div class="nav-links">
+    <a href="/features">Features</a><a href="/pricing">Pricing</a>
+    <a href="/enterprise">Enterprise</a><a href="/developers">Developers</a>
+    <a href="/build">Live Build</a>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="btn-ghost" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join waitlist</button>
+    <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get early access &rarr;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 40px 60px;text-align:center;position:relative;overflow:hidden">
+  <div style="position:absolute;top:10%;left:50%;transform:translateX(-50%);width:1000px;height:600px;background:radial-gradient(ellipse at 50% 40%,rgba(124,92,252,.14) 0%,transparent 60%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:800px;height:300px;background:radial-gradient(ellipse at 50% 80%,rgba(0,245,160,.08) 0%,transparent 65%);pointer-events:none"></div>
+  <div style="display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:20px;border:1px solid rgba(0,245,160,.3);background:rgba(0,245,160,.07);font-size:13px;color:var(--ac);font-weight:600;margin-bottom:28px;position:relative;z-index:1">
+    <span style="width:7px;height:7px;border-radius:50%;background:var(--ac);animation:pulse 1.8s infinite"></span>
+    Launching August 1, 2026 &nbsp;&middot;&nbsp; First 500 users get 3 months Pro free
+  </div>
+  <h1 style="font-size:clamp(44px,7.5vw,92px);font-weight:900;line-height:1.04;letter-spacing:-3px;margin-bottom:22px;max-width:920px;position:relative;z-index:1">
+    One platform.<br><span class="grad-text">Every AI tool you'll ever need.</span>
+  </h1>
+  <p style="max-width:620px;margin:0 auto 14px;font-size:19px;color:var(--t2);line-height:1.7;position:relative;z-index:1">
+    20+ professional workspaces. 200+ AI models. A platform that improves itself. Code, circuits, video, music, writing, research, automation &mdash; connected by a single AI that knows everything you're working on.
+  </p>
+  <p style="font-size:15px;color:var(--t3);margin-bottom:36px;position:relative;z-index:1">
+    Replaces Adobe CC &middot; GitHub Copilot &middot; Notion &middot; Audacity &middot; Canva &middot; Perplexity &middot; ChatGPT Plus &middot; and more &mdash;
+    <strong style="color:var(--t2)"> for CA$29/month.</strong>
+  </p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;position:relative;z-index:1">
+    <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"
+      style="padding:16px 36px;border-radius:12px;font-size:17px;font-weight:700;background:var(--grad);color:#000;border:none;cursor:pointer;box-shadow:0 8px 32px rgba(0,245,160,.22);font-family:inherit;transition:all .2s"
+      onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 16px 48px rgba(0,245,160,.32)'"
+      onmouseout="this.style.transform='';this.style.boxShadow='0 8px 32px rgba(0,245,160,.22)'">
+      Join the waitlist &mdash; it's free &rarr;
+    </button>
+    <a href="/features">
+      <button class="btn-ghost" style="padding:16px 28px;font-size:16px">See every workspace</button>
+    </a>
+  </div>
+  <div style="display:flex;gap:48px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
+    <div style="text-align:center"><div style="font-size:30px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">200+</div><div style="font-size:12px;color:var(--t3);margin-top:2px;font-weight:500">AI Models</div></div>
+    <div style="text-align:center"><div style="font-size:30px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">20+</div><div style="font-size:12px;color:var(--t3);margin-top:2px;font-weight:500">Workspaces</div></div>
+    <div style="text-align:center"><div style="font-size:30px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">68+</div><div style="font-size:12px;color:var(--t3);margin-top:2px;font-weight:500">File Types</div></div>
+    <div style="text-align:center"><div style="font-size:30px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Free</div><div style="font-size:12px;color:var(--t3);margin-top:2px;font-weight:500">Code + Electrical</div></div>
+    <div style="text-align:center"><div style="font-size:30px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">CA$29</div><div style="font-size:12px;color:var(--t3);margin-top:2px;font-weight:500">Pro / Month</div></div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker"><span class="tick-item"><span class="tick-dot"></span>Design PCB schematics</span><span class="tick-item"><span class="tick-dot"></span>Write and run firmware</span><span class="tick-item"><span class="tick-dot"></span>Generate music tracks</span><span class="tick-item"><span class="tick-dot"></span>Edit video with AI</span><span class="tick-item"><span class="tick-dot"></span>Research any topic live</span><span class="tick-item"><span class="tick-dot"></span>Automate desktop workflows</span><span class="tick-item"><span class="tick-dot"></span>Generate AI images</span><span class="tick-item"><span class="tick-dot"></span>Write long-form documents</span><span class="tick-item"><span class="tick-dot"></span>Debug code across projects</span><span class="tick-item"><span class="tick-dot"></span>Synthesise realistic voices</span><span class="tick-item"><span class="tick-dot"></span>Build data pipelines</span><span class="tick-item"><span class="tick-dot"></span>Create 3D previews</span><span class="tick-item"><span class="tick-dot"></span>Query databases in plain English</span><span class="tick-item"><span class="tick-dot"></span>Generate test suites</span><span class="tick-item"><span class="tick-dot"></span>Translate 30+ languages</span><span class="tick-item"><span class="tick-dot"></span>Analyse datasets with Python</span><span class="tick-item"><span class="tick-dot"></span>Refactor entire codebases</span><span class="tick-item"><span class="tick-dot"></span>Design UI mockups</span><span class="tick-item"><span class="tick-dot"></span>Build browser automations</span><span class="tick-item"><span class="tick-dot"></span>Extract data from any file</span><span class="tick-item"><span class="tick-dot"></span>Mix and score audio</span><span class="tick-item"><span class="tick-dot"></span>Generate video from text</span><span class="tick-item"><span class="tick-dot"></span>Draft technical documentation</span><span class="tick-item"><span class="tick-dot"></span>Monitor systems and APIs</span><span class="tick-item"><span class="tick-dot"></span>Reverse-engineer codebases</span><span class="tick-item"><span class="tick-dot"></span>Draft legal contracts</span><span class="tick-item"><span class="tick-dot"></span>Build automation flows</span><span class="tick-item"><span class="tick-dot"></span>Generate marketing copy</span><span class="tick-item"><span class="tick-dot"></span>Create technical diagrams</span><span class="tick-item"><span class="tick-dot"></span>Run SPICE simulations</span><span class="tick-item"><span class="tick-dot"></span>Design PCB schematics</span><span class="tick-item"><span class="tick-dot"></span>Write and run firmware</span><span class="tick-item"><span class="tick-dot"></span>Generate music tracks</span><span class="tick-item"><span class="tick-dot"></span>Edit video with AI</span><span class="tick-item"><span class="tick-dot"></span>Research any topic live</span><span class="tick-item"><span class="tick-dot"></span>Automate desktop workflows</span><span class="tick-item"><span class="tick-dot"></span>Generate AI images</span><span class="tick-item"><span class="tick-dot"></span>Write long-form documents</span><span class="tick-item"><span class="tick-dot"></span>Debug code across projects</span><span class="tick-item"><span class="tick-dot"></span>Synthesise realistic voices</span><span class="tick-item"><span class="tick-dot"></span>Build data pipelines</span><span class="tick-item"><span class="tick-dot"></span>Create 3D previews</span><span class="tick-item"><span class="tick-dot"></span>Query databases in plain English</span><span class="tick-item"><span class="tick-dot"></span>Generate test suites</span><span class="tick-item"><span class="tick-dot"></span>Translate 30+ languages</span><span class="tick-item"><span class="tick-dot"></span>Analyse datasets with Python</span><span class="tick-item"><span class="tick-dot"></span>Refactor entire codebases</span><span class="tick-item"><span class="tick-dot"></span>Design UI mockups</span><span class="tick-item"><span class="tick-dot"></span>Build browser automations</span><span class="tick-item"><span class="tick-dot"></span>Extract data from any file</span><span class="tick-item"><span class="tick-dot"></span>Mix and score audio</span><span class="tick-item"><span class="tick-dot"></span>Generate video from text</span><span class="tick-item"><span class="tick-dot"></span>Draft technical documentation</span><span class="tick-item"><span class="tick-dot"></span>Monitor systems and APIs</span><span class="tick-item"><span class="tick-dot"></span>Reverse-engineer codebases</span><span class="tick-item"><span class="tick-dot"></span>Draft legal contracts</span><span class="tick-item"><span class="tick-dot"></span>Build automation flows</span><span class="tick-item"><span class="tick-dot"></span>Generate marketing copy</span><span class="tick-item"><span class="tick-dot"></span>Create technical diagrams</span><span class="tick-item"><span class="tick-dot"></span>Run SPICE simulations</span></div>
+</div>
+
+<!-- APP PREVIEW -->
+<div style="padding:72px 40px 0;max-width:1100px;margin:0 auto;position:relative;z-index:1">
+  <div class="app-frame">
+    <div class="app-frame-bar">
+      <div class="app-dot" style="background:#f87171"></div>
+      <div class="app-dot" style="background:#fbbf24"></div>
+      <div class="app-dot" style="background:#3dd68c"></div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);margin:0 auto">Valatir AI v2.0</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3)">GPU 4% &middot; CPU 12% &middot; <span style="color:var(--green)">&bull; Online</span></span>
+    </div>
+    <div class="app-layout">
+      <div class="app-sidebar-demo">
+        <div style="padding:0 16px 16px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:12px"><img src="data:image/png;base64,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" alt="Valatir" style="height:18px;width:auto;object-fit:contain;mix-blend-mode:screen"></div>
+        <div class="app-sb-section">Core</div>
+        <div class="app-sb-item active"><div class="app-sb-dot" style="background:var(--ac2)"></div>Home</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:var(--t3)"></div>AI Chat</div>
+        <div class="app-sb-section">Engineering</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:var(--green)"></div>Software Dev</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:var(--blue)"></div>Electrical/EDA</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:#38bdf8"></div>Mechanical CAD</div>
+        <div class="app-sb-section">Creative</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:#f472b6"></div>Design Hub</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:#a78bfa"></div>Music DAW</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:var(--amber)"></div>Video Editor</div>
+        <div class="app-sb-section">Research &amp; Data</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:var(--green)"></div>Research</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:var(--ac2)"></div>Brain Map</div>
+        <div class="app-sb-section">Productivity</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:var(--blue)"></div>Documents</div>
+        <div class="app-sb-item"><div class="app-sb-dot" style="background:var(--t3)"></div>Automation</div>
+      </div>
+      <div class="app-main-demo">
+        <div>
+          <div style="font-size:22px;font-weight:700;letter-spacing:-.5px">Good afternoon, Gabriel.</div>
+          <div style="font-size:12px;color:var(--t3);margin-top:2px">Tuesday &middot; 47/1000 messages &middot; 12 workspaces active</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+          <div class="app-stat-card"><div style="font-size:13px;margin-bottom:8px">&#128200;</div><div style="font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--ac2)">312</div><div style="font-size:9px;color:var(--t3);margin-top:2px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Sessions</div></div>
+          <div class="app-stat-card"><div style="font-size:13px;margin-bottom:8px">&#128172;</div><div style="font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--ac)">47</div><div style="font-size:9px;color:var(--t3);margin-top:2px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Today</div></div>
+          <div class="app-stat-card"><div style="font-size:13px;margin-bottom:8px">&#9889;</div><div style="font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--amber)">1.69M</div><div style="font-size:9px;color:var(--t3);margin-top:2px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Tokens</div></div>
+          <div class="app-stat-card"><div style="font-size:13px;margin-bottom:8px">&#128193;</div><div style="font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--blue)">12</div><div style="font-size:9px;color:var(--t3);margin-top:2px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Active</div></div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:10px">Quick Launch</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap"><div style="background:#080808;border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:9px 13px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2);cursor:pointer"><span>💬</span>AI Chat</div><div style="background:#080808;border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:9px 13px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2);cursor:pointer"><span>💻</span>Software Dev</div><div style="background:#080808;border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:9px 13px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2);cursor:pointer"><span>⚡</span>Electrical</div><div style="background:#080808;border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:9px 13px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2);cursor:pointer"><span>🎨</span>Design Hub</div><div style="background:#080808;border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:9px 13px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2);cursor:pointer"><span>🔬</span>Research</div><div style="background:#080808;border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:9px 13px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2);cursor:pointer"><span>🎵</span>DAW</div><div style="background:#080808;border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:9px 13px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2);cursor:pointer"><span>⚙️</span>Automation</div></div>
+        </div>
+        <div class="app-insight">
+          <div style="font-size:18px;flex-shrink:0">&#10022;</div>
+          <div><div style="font-size:9px;color:var(--ac);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px">AI Insight</div>
+          <div style="font-size:12px;color:var(--t2)">You've used Software Dev 22% more this week. The circuit you designed in Electrical is referenced in 3 open code files &mdash; want me to check them for consistency?</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT SHOWCASE -->
+<section style="padding:120px 40px 80px;position:relative;z-index:1">
+  <div class="section-center">
+    <div class="section-badge">&#128640; What you can build</div>
+    <h2 class="section-title">Name a project.<br><span class="grad-text">Valatir has a workspace for it.</span></h2>
+    <p class="section-sub">Every major creative and technical workflow is a different combination of workspaces &mdash; all connected by HELIX, all sharing context simultaneously.</p>
+  </div>
+  <div class="proj-grid"><div class="proj-card fade-in"><div class="proj-card-bar" style="background:linear-gradient(90deg,#60a5fa,#a78bfa)"></div><div class="proj-card-top"><div class="proj-tag">Engineering</div><div class="proj-name">Build an autonomous robot</div><div class="proj-desc">Design the circuit, write the firmware, simulate, document — all four workspaces open, all sharing context. HELIX knows your PCB pin assignments before you write a line of firmware.</div></div><div class="proj-ws-flow"><div class="proj-ws-chip"><span>⚡</span>Electrical</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>💻</span>Code</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>🔬</span>Research</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>📄</span>Docs</div></div></div>
+<div class="proj-card fade-in"><div class="proj-card-bar" style="background:linear-gradient(90deg,#f472b6,#a78bfa)"></div><div class="proj-card-top"><div class="proj-tag">Creative</div><div class="proj-name">Write and release an album</div><div class="proj-desc">Generate music in the DAW, write lyrics in Docs, create the cover in Image Editor, synthesise vocals with ElevenLabs, research your market before release.</div></div><div class="proj-ws-flow"><div class="proj-ws-chip"><span>🎵</span>DAW</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>📄</span>Writing</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>🎨</span>Image</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>🔬</span>Research</div></div></div>
+<div class="proj-card fade-in"><div class="proj-card-bar" style="background:linear-gradient(90deg,#00f5a0,#3dd68c)"></div><div class="proj-card-top"><div class="proj-tag">Research</div><div class="proj-name">Write a research paper</div><div class="proj-desc">Pull live papers from the web, index in Brain Map, co-author in Documents, generate charts in Analytics, export publication-ready.</div></div><div class="proj-ws-flow"><div class="proj-ws-chip"><span>🌐</span>Research</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>🧠</span>Brain Map</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>📄</span>Documents</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>📊</span>Analytics</div></div></div>
+<div class="proj-card fade-in"><div class="proj-card-bar" style="background:linear-gradient(90deg,#f59e0b,#ef4444)"></div><div class="proj-card-top"><div class="proj-tag">Business</div><div class="proj-name">Launch a software product</div><div class="proj-desc">Build in Code, design UI in Design Hub, write copy in Docs, research competitors, set up email automations — then ship.</div></div><div class="proj-ws-flow"><div class="proj-ws-chip"><span>💻</span>Code</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>🎨</span>Design</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>📄</span>Docs</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>⚙️</span>Automation</div></div></div>
+<div class="proj-card fade-in"><div class="proj-card-bar" style="background:linear-gradient(90deg,#7c5cfc,#60a5fa)"></div><div class="proj-card-top"><div class="proj-tag">Content</div><div class="proj-name">Produce a documentary</div><div class="proj-desc">Research the story, write the script, generate narration audio, edit video with AI captions, create promotional assets.</div></div><div class="proj-ws-flow"><div class="proj-ws-chip"><span>🔬</span>Research</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>📄</span>Script</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>🎬</span>Video</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>🎨</span>Images</div></div></div>
+<div class="proj-card fade-in"><div class="proj-card-bar" style="background:linear-gradient(90deg,#34d399,#60a5fa)"></div><div class="proj-card-top"><div class="proj-tag">Data</div><div class="proj-name">Build an AI-powered dashboard</div><div class="proj-desc">Query databases in plain English, write the Python pipeline, visualise in Analytics, automate daily reports, let Brain Map surface hidden patterns.</div></div><div class="proj-ws-flow"><div class="proj-ws-chip"><span>🗄️</span>Database</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>💻</span>Code</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>📊</span>Analytics</div><span class="proj-arrow">→</span><div class="proj-ws-chip"><span>⚙️</span>Automation</div></div></div>
+</div>
+</section>
+
+<!-- HELIX -->
+<section style="padding:100px 40px;position:relative;z-index:1;background:linear-gradient(180deg,transparent,rgba(124,92,252,.05),transparent)">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-center" style="margin-bottom:0">
+      <div class="section-badge">&#11041; HELIX Architecture</div>
+      <h2 class="section-title">Most software ships.<br><span class="grad-text">HELIX evolves.</span></h2>
+      <p class="section-sub">When something breaks, HELIX flags the Engineer directly. When the fix ships, HELIX tells you personally. The platform monitors, proposes, and improves &mdash; faster than any human team.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:60px;align-items:start">
+      <div><div class="fade-in" style="display:flex;gap:16px;margin-bottom:28px"><div style="width:42px;height:42px;border-radius:10px;flex-shrink:0;background:rgba(0,245,160,.08);border:1px solid rgba(0,245,160,.18);display:flex;align-items:center;justify-content:center;font-size:18px">🧠</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Six AI models running simultaneously</div><div style="font-size:13px;color:var(--t2);line-height:1.65">Signal processor, working memory, reasoning, intuition, strategy, and critic — each handling a different cognitive layer.</div></div></div><div class="fade-in" style="display:flex;gap:16px;margin-bottom:28px"><div style="width:42px;height:42px;border-radius:10px;flex-shrink:0;background:rgba(0,245,160,.08);border:1px solid rgba(0,245,160,.18);display:flex;align-items:center;justify-content:center;font-size:18px">🔄</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Self-improving feedback loop</div><div style="font-size:13px;color:var(--t2);line-height:1.65">HELIX monitors its own failures, proposes fixes, and ships improvements. The platform gets better at getting better.</div></div></div><div class="fade-in" style="display:flex;gap:16px;margin-bottom:28px"><div style="width:42px;height:42px;border-radius:10px;flex-shrink:0;background:rgba(0,245,160,.08);border:1px solid rgba(0,245,160,.18);display:flex;align-items:center;justify-content:center;font-size:18px">🔗</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Shared context across everything</div><div style="font-size:13px;color:var(--t2);line-height:1.65">The schematic, the code, the research, the docs — HELIX knows all of it. Nothing is lost when you switch workspaces.</div></div></div><div class="fade-in" style="display:flex;gap:16px;margin-bottom:28px"><div style="width:42px;height:42px;border-radius:10px;flex-shrink:0;background:rgba(0,245,160,.08);border:1px solid rgba(0,245,160,.18);display:flex;align-items:center;justify-content:center;font-size:18px">🔒</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px">Security covenant — permanent</div><div style="font-size:13px;color:var(--t2);line-height:1.65">HELIX cannot modify the systems that protect you. Not a policy — an architectural fact.</div></div></div></div>
+      <div class="helix-terminal fade-in">
+        <div class="ht-bar"><div class="ht-dot" style="background:#f87171"></div><div class="ht-dot" style="background:#fbbf24"></div><div class="ht-dot" style="background:#3dd68c"></div><div class="ht-title">HELIX Orchestrator &mdash; live</div></div>
+        <div class="ht-body">
+          <div class="ht-line"><span class="ht-dim">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</span></div>
+          <div class="ht-line"><span style="color:#a89ff0;font-weight:700">HELIX v2.0 &middot; 6-model stack</span></div>
+          <div class="ht-line"><span class="ht-dim">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</span></div>
+          <div class="ht-line"><span class="ht-ok">&#10003;</span><span style="color:var(--t2)"> signal_processor ...... &lt;10ms</span></div>
+          <div class="ht-line"><span class="ht-ok">&#10003;</span><span style="color:var(--t2)"> working_memory ........ online</span></div>
+          <div class="ht-line"><span class="ht-ok">&#10003;</span><span style="color:var(--t2)"> reasoning_model ....... online</span></div>
+          <div class="ht-line"><span class="ht-ok">&#10003;</span><span style="color:var(--t2)"> intuition_model ....... online</span></div>
+          <div class="ht-line"><span class="ht-ok">&#10003;</span><span style="color:var(--t2)"> strategic_model ....... online</span></div>
+          <div class="ht-line"><span class="ht-ok">&#10003;</span><span style="color:var(--t2)"> critic_model ........... online</span></div>
+          <div class="ht-line">&nbsp;</div>
+          <div class="ht-line"><span class="ht-info">&rarr;</span><span style="color:var(--t2)"> Cross-context: Electrical &harr; Code &harr; Docs</span></div>
+          <div class="ht-line"><span class="ht-warn">!</span><span style="color:var(--t2)"> Issue #247 resolved &middot; user notified</span></div>
+          <div class="ht-line"><span class="ht-info">&rarr;</span><span style="color:var(--t2)"> Improvement #58 proposed &rarr; reviewing</span></div>
+          <div class="ht-line"><span style="color:var(--ac)">$</span><span style="color:var(--t2)"> Monitoring session... </span><span class="ht-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4-WINDOW SYSTEM -->
+<section style="padding:100px 40px;position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-center">
+      <div class="section-badge">&#11041; Window System</div>
+      <h2 class="section-title">Four workspaces. One AI.<br>All connected.</h2>
+      <p class="section-sub">Run up to four workspaces simultaneously. HELIX sees all of them and actively reasons across all four contexts at once.</p>
+    </div>
+    <div class="window-demo fade-in">
+      <div class="wd-bar">
+        <div class="app-dot" style="background:#f87171"></div><div class="app-dot" style="background:#fbbf24"></div><div class="app-dot" style="background:#3dd68c"></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);margin:0 auto">Valatir &mdash; 4 workspaces open &middot; HELIX cross-context active</span>
+      </div>
+      <div class="wd-layout">
+        <div class="wd-pane" style="border-right:1px solid rgba(255,255,255,.07)">
+          <div class="wd-pane-label" style="color:var(--blue)">&#9889; Electrical/EDA</div>
+          <div class="wd-pane-content" style="color:var(--blue)">
+            STM32_DevBoard.kicad_sch<br>
+            <span style="color:var(--t3)">PA8 &rarr; WS2812B data line<br>74&Omega; series resistor<br>VCC: 5V rail<br>Level shifter: WS_DATA net</span><br>
+            <span style="color:var(--green)">&#10003; DRC: 0 errors</span>
+          </div>
+          <div class="wd-helix-bar"><span style="width:5px;height:5px;border-radius:50%;background:var(--ac);flex-shrink:0"></span>HELIX: reading pin assignments</div>
+        </div>
+        <div class="wd-pane">
+          <div class="wd-pane-label" style="color:var(--green)">&#128187; Software Dev</div>
+          <div class="wd-pane-content">
+            <span style="color:#a78bfa">#define</span><br>
+            <span style="color:var(--green)">  LED_PIN</span><span style="color:var(--t2)">  GPIO_PIN_8</span><span style="color:var(--t3)"> // PA8</span><br>
+            <span style="color:#a78bfa">void</span><br>
+            <span style="color:var(--green)">  WS2812_Send</span><span style="color:var(--t2)">(uint8 r,g,b) {</span><br>
+            <span style="color:var(--t3)">  // VCC 5V, GPIO 3.3V</span><br>
+            <span style="color:var(--t3)">  // level shifter handles it</span>
+          </div>
+          <div class="wd-helix-bar"><span style="width:5px;height:5px;border-radius:50%;background:var(--ac);flex-shrink:0"></span>HELIX: cross-referencing schematic</div>
+        </div>
+        <div class="wd-pane" style="border-top:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07)">
+          <div class="wd-pane-label" style="color:var(--amber)">&#127758; Research</div>
+          <div class="wd-pane-content">
+            <span style="color:var(--t1)">WS2812B Datasheet</span><br>
+            <span style="color:var(--t3)">T0H: 0.4&mu;s &middot; T0L: 0.85&mu;s<br>T1H: 0.8&mu;s &middot; T1L: 0.45&mu;s<br>Reset: &gt;50&mu;s low</span><br>
+            <span style="color:var(--green)">&#10003; Applied to firmware timing</span>
+          </div>
+          <div class="wd-helix-bar"><span style="width:5px;height:5px;border-radius:50%;background:var(--ac);flex-shrink:0"></span>HELIX: timing spec &rarr; code</div>
+        </div>
+        <div class="wd-pane" style="border-top:1px solid rgba(255,255,255,.07)">
+          <div class="wd-pane-label" style="color:var(--t3)">&#9881; Terminal</div>
+          <div class="wd-pane-content">
+            <span style="color:var(--ac)">$</span> make flash<br>
+            <span style="color:var(--t3)">Compiling firmware.c...</span><br>
+            <span style="color:var(--green)">&#10003; Build successful</span><br>
+            <span style="color:var(--t3)">Flashing via ST-Link...</span><br>
+            <span style="color:var(--green)">&#10003; Device programmed</span><br>
+            <span style="color:var(--ac)">$</span> <span style="display:inline-block;width:6px;height:11px;background:var(--ac);vertical-align:middle;animation:blink 1s infinite"></span>
+          </div>
+          <div class="wd-helix-bar"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0"></span>Build complete &middot; 0 linker errors</div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--t3);margin-top:16px">The AI knew about the 74&Omega; resistor, the 5V rail, and the level shifter &mdash; from the schematic. You didn't tell it. It already knew.</p>
+  </div>
+</section>
+
+<!-- MODELS -->
+<section style="padding:80px 40px;position:relative;z-index:1;background:linear-gradient(180deg,transparent,rgba(124,92,252,.04),transparent)">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-center">
+      <div class="section-badge">&#129302; 200+ Models</div>
+      <h2 class="section-title">Every leading AI model.<br>One intelligent router.</h2>
+      <p class="section-sub">Set rules like "use Claude for reasoning, Groq for quick drafts" &mdash; or let HELIX route automatically based on task type, cost, and speed.</p>
+    </div>
+    <div class="models-scroll"><div class="model-card"><div class="model-provider">Anthropic</div><div class="model-name">Claude Sonnet 4</div><div class="model-desc">Best reasoning, long context</div><div class="model-tag tag-pro">Pro</div></div>
+<div class="model-card"><div class="model-provider">Anthropic</div><div class="model-name">Claude Opus 4</div><div class="model-desc">Most capable. Complex tasks</div><div class="model-tag tag-pro">Pro</div></div>
+<div class="model-card"><div class="model-provider">Anthropic</div><div class="model-name">Claude Haiku 4</div><div class="model-desc">Fastest Claude. Quick drafts</div><div class="model-tag tag-free">Free</div></div>
+<div class="model-card"><div class="model-provider">OpenAI</div><div class="model-name">GPT-4o</div><div class="model-desc">Vision, function calling</div><div class="model-tag tag-pro">Pro</div></div>
+<div class="model-card"><div class="model-provider">OpenAI</div><div class="model-name">GPT-4o mini</div><div class="model-desc">Fast, cheap, structured</div><div class="model-tag tag-pro">Pro</div></div>
+<div class="model-card"><div class="model-provider">Google</div><div class="model-name">Gemini 2.0 Pro</div><div class="model-desc">2M context, multimodal</div><div class="model-tag tag-pro">Pro</div></div>
+<div class="model-card"><div class="model-provider">Google</div><div class="model-name">Gemini 2.0 Flash</div><div class="model-desc">Ultra-fast, large context</div><div class="model-tag tag-pro">Pro</div></div>
+<div class="model-card"><div class="model-provider">Meta / Groq</div><div class="model-name">Llama 3 70B</div><div class="model-desc">Fastest open-source inference</div><div class="model-tag tag-free">Free</div></div>
+<div class="model-card"><div class="model-provider">Mistral</div><div class="model-name">Mistral Large</div><div class="model-desc">Strong EU reasoning model</div><div class="model-tag tag-pro">Pro</div></div>
+<div class="model-card"><div class="model-provider">Cohere</div><div class="model-name">Command R+</div><div class="model-desc">Enterprise RAG, citations</div><div class="model-tag tag-pro">Pro</div></div>
+<div class="model-card"><div class="model-provider">xAI</div><div class="model-name">Grok 2</div><div class="model-desc">Real-time data, strong code</div><div class="model-tag tag-pro">Pro</div></div>
+<div class="model-card"><div class="model-provider">OpenRouter</div><div class="model-name">200+ models</div><div class="model-desc">Every open and closed model</div><div class="model-tag tag-studio">Studio</div></div>
+</div>
+    <p style="text-align:center;font-size:13px;color:var(--t3);margin-top:4px">Plus Deepseek, Yi, Qwen, Mixtral, Phi-3, WizardLM, and 180+ more via OpenRouter</p>
+  </div>
+</section>
+
+<!-- WORKSPACES -->
+<section style="padding:100px 40px;position:relative;z-index:1">
+  <div class="section-center" style="max-width:1100px;margin:0 auto 0">
+    <div class="section-badge">&#128193; 20+ Workspaces</div>
+    <h2 class="section-title">Every professional tool.<br>One shared intelligence.</h2>
+    <p class="section-sub">Not AI bolted onto legacy software. Each workspace was built for HELIX &mdash; so the AI understands your work across all of them simultaneously.</p>
+  </div>
+  <div class="ws-grid"><div class="ws-card fade-in"><div class="ws-icon">💬</div><div class="ws-name">AI Chat</div><div class="ws-desc">Multi-model chat with 200+ models, web search, voice, file analysis, and RAG over all your documents.</div><div class="ws-chips"><span class="ws-chip">Claude 4</span><span class="ws-chip">GPT-4o</span><span class="ws-chip">Gemini</span><span class="ws-chip">200+ more</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">💻</div><div class="ws-name">Software Dev <span class="free-badge">FREE · ALWAYS</span></div><div class="ws-desc">Full IDE with live sandbox, whole-project AI context, debugger, test generator, and refactorer.</div><div class="ws-chips"><span class="ws-chip">30+ languages</span><span class="ws-chip">Sandbox</span><span class="ws-chip">Git</span><span class="ws-chip">AI debugger</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">⚡</div><div class="ws-name">Electrical/EDA <span class="free-badge">FREE · ALWAYS</span></div><div class="ws-desc">Schematic editor, PCB layout, AI-powered DRC, component intelligence, firmware cross-awareness.</div><div class="ws-chips"><span class="ws-chip">KiCad-compatible</span><span class="ws-chip">SPICE</span><span class="ws-chip">AI DRC</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">🧠</div><div class="ws-name">Brain Map</div><div class="ws-desc">Your living knowledge graph. Every document and note becomes a node. Semantic search. AI connections.</div><div class="ws-chips"><span class="ws-chip">Knowledge graph</span><span class="ws-chip">Semantic</span><span class="ws-chip">Local only</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">🎵</div><div class="ws-name">Music DAW</div><div class="ws-desc">Multi-track audio, AI music generation via Suno, voice synthesis via ElevenLabs, transcription.</div><div class="ws-chips"><span class="ws-chip">Suno</span><span class="ws-chip">ElevenLabs</span><span class="ws-chip">Whisper</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">🎬</div><div class="ws-name">Video Editor</div><div class="ws-desc">AI-assisted cutting, auto-captions, B-roll suggestions, colour grading, export for any platform.</div><div class="ws-chips"><span class="ws-chip">Runway</span><span class="ws-chip">Kling</span><span class="ws-chip">AI cuts</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">🎨</div><div class="ws-name">Image Editor</div><div class="ws-desc">Generate and edit images with natural language. Inpainting, background removal, style transfer.</div><div class="ws-chips"><span class="ws-chip">DALL-E 3</span><span class="ws-chip">SD XL</span><span class="ws-chip">Flux Pro</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">🌐</div><div class="ws-name">Research</div><div class="ws-desc">Real-time web search with AI synthesis. Full article extraction, citation tracking, research monitors.</div><div class="ws-chips"><span class="ws-chip">Multi-engine</span><span class="ws-chip">Live search</span><span class="ws-chip">Monitors</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">📄</div><div class="ws-name">Documents</div><div class="ws-desc">Long-form writing with AI co-authorship. Import any format, AI inline editing, export anywhere.</div><div class="ws-chips"><span class="ws-chip">Import 68+ types</span><span class="ws-chip">AI co-author</span><span class="ws-chip">RAG</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">🗄️</div><div class="ws-name">Database</div><div class="ws-desc">Query any database in plain English. Postgres, SQLite, BigQuery, MySQL. Visual query builder.</div><div class="ws-chips"><span class="ws-chip">SQL + NL</span><span class="ws-chip">Multi-DB</span><span class="ws-chip">AI schema</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">⚙️</div><div class="ws-name">Automation</div><div class="ws-desc">17 automation modules. Describe a workflow, HELIX builds it. Schedule, trigger, chain across apps.</div><div class="ws-chips"><span class="ws-chip">No-code</span><span class="ws-chip">Scheduler</span><span class="ws-chip">400+ connectors</span></div></div>
+<div class="ws-card fade-in"><div class="ws-icon">📊</div><div class="ws-name">Analytics</div><div class="ws-desc">Python notebooks, data visualisation, ML model training, AI explains every chart.</div><div class="ws-chips"><span class="ws-chip">Python</span><span class="ws-chip">Jupyter</span><span class="ws-chip">ML</span></div></div>
+</div>
+  <div style="text-align:center;margin-top:28px">
+    <a href="/features"><button class="btn-ghost" style="font-size:14px;padding:10px 24px">See all 20+ workspaces in detail &rarr;</button></a>
+  </div>
+</section>
+
+<!-- FREE ROTATION -->
+<section style="padding:100px 40px;position:relative;z-index:1;background:linear-gradient(180deg,transparent,rgba(0,245,160,.04),transparent)">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-center" style="margin-bottom:0">
+      <div class="section-badge">&#128260; Free Rotation</div>
+      <h2 class="section-title">Fall in love before you pay.</h2>
+      <p class="section-sub">A rotating set of complete professional workspaces are free every cycle &mdash; no watermarks, no feature limits. When the rotation changes and your favourite disappears, you know exactly what you're upgrading to. Because you already built something real with it.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:48px auto 0">
+      <div class="rot-card fade-in">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:14px">This cycle &mdash; free</div>
+        <div class="rot-tool"><div style="font-size:18px">&#127916;</div><div><div style="font-size:13px;font-weight:600;color:var(--t1)">Video Editor</div><div style="font-size:11px;color:var(--t3)">AI cuts, captions, B-roll</div></div></div>
+        <div class="rot-tool"><div style="font-size:18px">&#127925;</div><div><div style="font-size:13px;font-weight:600;color:var(--t1)">Music DAW</div><div style="font-size:11px;color:var(--t3)">Multi-track, Suno, ElevenLabs</div></div></div>
+        <div class="rot-tool"><div style="font-size:18px">&#127912;</div><div><div style="font-size:13px;font-weight:600;color:var(--t1)">Design Hub</div><div style="font-size:11px;color:var(--t3)">Brand assets, generation, mockups</div></div></div>
+        <div style="margin-top:12px;font-size:11px;color:var(--t3)">Rotation changes periodically</div>
+      </div>
+      <div class="rot-always fade-in">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin-bottom:14px">Always free &mdash; forever</div>
+        <div class="rot-tool"><div style="font-size:18px">&#128187;</div><div><div style="font-size:13px;font-weight:600;color:var(--t1)">Software Dev</div><div style="font-size:12px;color:var(--t2)">Full IDE, sandbox, AI debugger &mdash; permanently free. No limits.</div></div></div>
+        <div class="rot-tool"><div style="font-size:18px">&#9889;</div><div><div style="font-size:13px;font-weight:600;color:var(--t1)">Electrical/EDA</div><div style="font-size:12px;color:var(--t2)">Schematic editor, PCB, AI DRC &mdash; permanently free. No limits.</div></div></div>
+        <div style="margin-top:14px;font-size:12px;color:var(--t2);line-height:1.65">The developers and engineers building the future shouldn't need to pay to get started. This won't change.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD TEASER -->
+<section style="padding:60px 40px;position:relative;z-index:1">
+  <div class="build-teaser fade-in">
+    <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(0,245,160,.12),transparent 70%);pointer-events:none"></div>
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:12px">&#11041; Live Build</div>
+      <h3 style="font-size:24px;font-weight:900;letter-spacing:-1px;margin-bottom:10px;line-height:1.2">Valatir is building itself. Right now.</h3>
+      <p style="font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:20px">Valkyrie &mdash; an AI build agent running on HELIX &mdash; is writing every file in this platform autonomously. Watch every file, every test, every sprint live.</p>
+      <a href="/build"><button class="btn-ghost" style="padding:10px 22px;font-size:13px">Watch the build live &rarr;</button></a>
+    </div>
+    <div style="display:flex;gap:28px;flex-wrap:wrap"><div style="text-align:center"><div style="font-size:26px;font-weight:900;font-family:JetBrains Mono,monospace;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">44</div><div style="font-size:9px;color:var(--t3);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px">Files written</div></div><div style="text-align:center"><div style="font-size:26px;font-weight:900;font-family:JetBrains Mono,monospace;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">415</div><div style="font-size:9px;color:var(--t3);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px">Tests passing</div></div><div style="text-align:center"><div style="font-size:26px;font-weight:900;font-family:JetBrains Mono,monospace;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">CA$74</div><div style="font-size:9px;color:var(--t3);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px">Build cost</div></div><div style="text-align:center"><div style="font-size:26px;font-weight:900;font-family:JetBrains Mono,monospace;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">305</div><div style="font-size:9px;color:var(--t3);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px">Total files</div></div></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section style="padding:100px 40px;position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-center" style="margin-bottom:0">
+      <div class="section-badge">&#128176; Pricing</div>
+      <h2 class="section-title">Replace 12 subscriptions.<br>Pay for one.</h2>
+      <p class="section-sub">The average professional spends CA$150&ndash;400/month across fragmented tools. Valatir starts at CA$29.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:52px"><div class="pp-card fade-in"><div style="font-size:12px;font-weight:700;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">Free</div><div style="font-size:32px;font-weight:900;line-height:1;margin-bottom:4px"><span class="grad-text">CA$0</span></div><div style="font-size:12px;color:var(--t3);margin-bottom:14px">forever</div><div style="font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:16px">Rotating free workspaces. Code + Electrical always free.</div><button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" style="width:100%;padding:10px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--t2);border:1px solid rgba(255,255,255,.12);transition:all .2s;font-family:inherit">Join waitlist</button></div>
+<div class="pp-card fade-in"><div style="font-size:12px;font-weight:700;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">Indie</div><div style="font-size:32px;font-weight:900;line-height:1;margin-bottom:4px"><span class="grad-text">CA$12</span></div><div style="font-size:12px;color:var(--t3);margin-bottom:14px">/month</div><div style="font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:16px">All 200+ models, unlimited messages, bring your own API keys.</div><button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" style="width:100%;padding:10px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--t2);border:1px solid rgba(255,255,255,.12);transition:all .2s;font-family:inherit">Join waitlist</button></div>
+<div class="pp-card featured fade-in"><div style="font-size:12px;font-weight:700;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">Pro</div><div style="font-size:32px;font-weight:900;line-height:1;margin-bottom:4px"><span class="grad-text">CA$29</span></div><div style="font-size:12px;color:var(--t3);margin-bottom:14px">/month</div><div style="font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:16px">All workspaces, code sandbox, brain map, web search, managed keys.</div><button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" style="width:100%;padding:10px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;background:var(--grad);color:#000;border:none;transition:all .2s;font-family:inherit">Get Pro &rarr;</button></div>
+<div class="pp-card fade-in"><div style="font-size:12px;font-weight:700;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">Studio</div><div style="font-size:32px;font-weight:900;line-height:1;margin-bottom:4px"><span class="grad-text">CA$69</span></div><div style="font-size:12px;color:var(--t3);margin-bottom:14px">/month</div><div style="font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:16px">Pro + full media suite: DAW, video, voice synthesis, music.</div><button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" style="width:100%;padding:10px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--t2);border:1px solid rgba(255,255,255,.12);transition:all .2s;font-family:inherit">Join waitlist</button></div>
+<div class="pp-card fade-in"><div style="font-size:12px;font-weight:700;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">Team</div><div style="font-size:32px;font-weight:900;line-height:1;margin-bottom:4px"><span class="grad-text">CA$99</span></div><div style="font-size:12px;color:var(--t3);margin-bottom:14px">/seat/mo</div><div style="font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:16px">Shared workspaces, admin dashboard, pooled API keys, analytics.</div><button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" style="width:100%;padding:10px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--t2);border:1px solid rgba(255,255,255,.12);transition:all .2s;font-family:inherit">Join waitlist</button></div>
+</div>
+    <div style="text-align:center;margin-top:22px">
+      <a href="/pricing"><button class="btn-ghost" style="font-size:14px;padding:10px 24px">Full pricing + comparison table &rarr;</button></a>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section id="waitlist" style="padding:80px 40px 100px;position:relative;z-index:1">
+  <div class="wl-card">
+    <div class="wl-glow"></div>
+    <div style="display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:20px;border:1px solid rgba(0,245,160,.3);background:rgba(0,245,160,.07);font-size:12px;color:var(--ac);font-weight:600;margin-bottom:20px">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--ac);animation:pulse 1.5s infinite"></span>
+      Early access &mdash; 3 months Pro free
+    </div>
+    <h2 style="font-size:32px;font-weight:900;letter-spacing:-1px;margin-bottom:12px">Join the waitlist</h2>
+    <p style="font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:28px;max-width:420px;margin-left:auto;margin-right:auto">First 500 users get 3 months of Pro free. No credit card. No catch. Launching August 1, 2026.</p>
+    <div class="wl-form">
+      <input class="wl-input" type="email" id="emailInput" placeholder="your@email.com">
+      <button class="wl-btn" onclick="handleSignup()">Join &rarr;</button>
+    </div>
+    <div id="signupNote" style="font-size:12px;color:var(--t3)">No spam. Launching August 1, 2026.</div>
+  </div>
+</section>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:14px"><img src="data:image/png;base64,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" alt="Valatir" style="height:24px;width:auto;object-fit:contain;mix-blend-mode:screen"></div>
+  <div class="footer-links">
+    <a href="/">Home</a><a href="/features">Features</a><a href="/pricing">Pricing</a>
+    <a href="/enterprise">Enterprise</a><a href="/developers">Developers</a>
+    <a href="/build">Live Build</a><a href="/about">Manifesto</a>
+    <a href="mailto:gabriel@valatir.ai">Contact</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a>
+  </div>
+  <div style="font-size:12px;color:var(--t3)">&copy; 2026 Valatir AI &middot; Ontario, Canada &middot; valatir.com</div>
+</footer>
+
+<script>
+function handleSignup(){
+  var email=document.getElementById('emailInput').value.trim();
+  var note=document.getElementById('signupNote');
+  if(!email||email.indexOf('@')===-1){note.textContent='Please enter a valid email.';note.style.color='#f87171';return;}
+  note.textContent="You're on the list. We'll be in touch before August 1.";
+  note.style.color='var(--ac)';
+  document.getElementById('emailInput').value='';
+}
+document.getElementById('emailInput').addEventListener('keydown',function(e){if(e.key==='Enter')handleSignup();});
+var lastY=0;
+window.addEventListener('scroll',function(){
+  var y=window.scrollY,nav=document.querySelector('nav');
+  nav.style.transform=y>lastY&&y>100?'translateY(-100%)':'translateY(0)';
+  lastY=y;
+});
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
+},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(function(el){
+  el.style.opacity='0';el.style.transform='translateY(20px)';
+  el.style.transition='opacity .6s ease,transform .6s ease';
+  obs.observe(el);
+});
+</script>
+</body></html>
