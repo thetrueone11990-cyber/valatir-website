@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valatir AI — Pricing</title>
+<meta name="description" content="Transparent pricing for every professional. Free to Business. Replace 12 AI subscriptions with one platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090f;--bg1:#0e0e1a;--bg2:#13131f;--bg3:#18182a;
+  --b:rgba(255,255,255,.07);--b2:rgba(255,255,255,.12);
+  --t1:#eeeef5;--t2:#9898b5;--t3:#52526e;
+  --ac:#00f5a0;--ac2:#7c5cfc;
+  --grad:linear-gradient(135deg,#00f5a0,#7c5cfc);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:'Inter',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* noise */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4}
+
+@keyframes glow{0%,100%{box-shadow:0 0 30px rgba(0,245,160,.2)}50%{box-shadow:0 0 60px rgba(0,245,160,.4)}}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.97)}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:16px 40px;background:rgba(9,9,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--b)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+.nav-logo-mark{width:34px;height:34px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#000;animation:glow 3s ease-in-out infinite}
+.nav-links{display:flex;gap:28px;margin:0 auto;align-items:center}
+.nav-links a{font-size:14px;color:var(--t2);transition:color .2s;font-weight:500}
+.nav-links a:hover,.nav-links a.active{color:var(--t1)}
+.nav-links a.active{color:var(--ac)}
+.btn-ghost{padding:8px 20px;border-radius:8px;border:1px solid var(--b2);color:var(--t2);font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;background:transparent}
+.btn-ghost:hover{border-color:var(--ac);color:var(--ac)}
+.btn-primary{padding:9px 22px;border-radius:8px;border:none;background:var(--grad);color:#000;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{padding:160px 40px 80px;text-align:center;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse at 50% 30%,rgba(124,92,252,.15) 0%,transparent 65%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:20px;border:1px solid rgba(0,245,160,.3);background:rgba(0,245,160,.08);font-size:13px;color:var(--ac);font-weight:600;margin-bottom:24px}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--ac);animation:pulse 2s infinite}
+.hero h1{font-size:clamp(38px,6vw,72px);font-weight:900;line-height:1.08;letter-spacing:-2px;margin-bottom:20px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 4s ease infinite}
+.hero-sub{max-width:540px;margin:0 auto 48px;font-size:17px;color:var(--t2);line-height:1.7}
+
+/* ── BILLING TOGGLE ── */
+.billing-toggle{display:inline-flex;align-items:center;gap:0;background:var(--bg2);border:1px solid var(--b2);border-radius:10px;padding:4px;margin-bottom:60px}
+.toggle-opt{padding:8px 22px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--t3);border:none;background:transparent}
+.toggle-opt.active{background:var(--grad);color:#000}
+.toggle-save{font-size:11px;color:var(--ac);font-weight:600;margin-left:8px;background:rgba(0,245,160,.1);padding:2px 8px;border-radius:4px}
+
+/* ── PRICING GRID ── */
+.pricing-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;max-width:1200px;margin:0 auto 80px;padding:0 40px}
+@media(max-width:1100px){.pricing-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
+.tier-card{background:var(--bg2);border:1px solid var(--b);border-radius:16px;padding:24px 18px;position:relative;transition:all .3s;display:flex;flex-direction:column}
+.tier-card:hover{border-color:var(--b2);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.tier-card.popular{border-color:rgba(0,245,160,.4);background:linear-gradient(160deg,#0e1a14,#13131f)}
+.tier-pop-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--grad);color:#000;font-size:10px;font-weight:800;padding:3px 12px;border-radius:20px;white-space:nowrap;letter-spacing:.5px}
+.tier-name{font-size:13px;font-weight:700;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.tier-price{font-size:34px;font-weight:900;line-height:1;margin-bottom:4px}
+.tier-price-free{color:var(--t2)}
+.tier-period{font-size:13px;color:var(--t3);margin-bottom:12px}
+.tier-desc{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:20px;min-height:44px}
+.tier-divider{height:1px;background:var(--b);margin-bottom:16px}
+.tier-feats{list-style:none;display:flex;flex-direction:column;gap:8px;flex:1}
+.tier-feats li{font-size:12px;color:var(--t2);display:flex;align-items:flex-start;gap:7px;line-height:1.4}
+.tier-feats li::before{content:'✓';color:var(--ac);font-weight:700;flex-shrink:0;margin-top:1px}
+.tier-feats li.muted{color:var(--t3)}
+.tier-feats li.muted::before{content:'–';color:var(--t3)}
+.tier-btn{margin-top:20px;padding:10px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;text-align:center;border:1px solid var(--b2);background:transparent;color:var(--t2);width:100%}
+.tier-btn:hover{border-color:var(--ac);color:var(--ac)}
+.tier-btn.primary{background:var(--grad);color:#000;border:none}
+.tier-btn.primary:hover{opacity:.9;box-shadow:0 8px 24px rgba(0,245,160,.25)}
+
+/* ── SECTION WRAPPER ── */
+.section{max-width:1200px;margin:0 auto;padding:0 40px 100px}
+.section-center{text-align:center;margin-bottom:56px}
+.section-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;border:1px solid var(--b2);font-size:12px;color:var(--t2);font-weight:600;margin-bottom:16px}
+.section-title{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-1.5px;margin-bottom:14px;line-height:1.1}
+.section-sub{font-size:16px;color:var(--t2);max-width:560px;margin:0 auto;line-height:1.7}
+
+/* ── COMPARISON TABLE ── */
+.comp-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--b)}
+.comp-table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}
+.comp-table th{padding:16px 18px;text-align:center;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t3);border-bottom:1px solid var(--b)}
+.comp-table th:first-child{text-align:left;width:220px}
+.comp-table th.popular-col{color:var(--ac)}
+.comp-table td{padding:13px 18px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);color:var(--t2);vertical-align:middle}
+.comp-table td:first-child{text-align:left;color:var(--t1);font-weight:500}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tbody tr:hover td{background:rgba(255,255,255,.02)}
+.comp-table td.popular-col{background:rgba(0,245,160,.04)}
+.check{color:var(--ac);font-size:16px;font-weight:700}
+.cross{color:var(--t3);font-size:14px}
+.comp-group th{background:var(--bg3);color:var(--t3);font-size:10px;letter-spacing:1.5px;padding:8px 18px;text-align:left;border-top:1px solid var(--b)}
+.comp-group th::before{content:'';display:inline-block;width:3px;height:10px;background:var(--grad);border-radius:2px;margin-right:8px;vertical-align:middle}
+.tier-label{font-size:12px;font-weight:800}
+
+/* ── MANAGED KEYS ── */
+.mk-card{background:linear-gradient(135deg,rgba(0,245,160,.06),rgba(124,92,252,.06));border:1px solid rgba(0,245,160,.2);border-radius:20px;padding:48px;margin-bottom:100px;max-width:1200px;margin-left:auto;margin-right:auto;margin-bottom:80px;position:relative;overflow:hidden}
+.mk-glow{position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,245,160,.12),transparent 70%);pointer-events:none}
+.mk-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:700px){.mk-grid{grid-template-columns:1fr}}
+.mk-tag{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-bottom:12px}
+.mk-title{font-size:28px;font-weight:900;letter-spacing:-1px;margin-bottom:16px;line-height:1.2}
+.mk-desc{font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:24px}
+.mk-steps{display:flex;flex-direction:column;gap:16px}
+.mk-step{display:flex;gap:14px;align-items:flex-start}
+.mk-step-num{width:28px;height:28px;border-radius:7px;background:rgba(0,245,160,.12);border:1px solid rgba(0,245,160,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--ac);flex-shrink:0}
+.mk-step-text strong{display:block;font-size:13px;font-weight:700;color:var(--t1);margin-bottom:2px}
+.mk-step-text span{font-size:12px;color:var(--t3)}
+.mk-providers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mk-provider{background:var(--bg2);border:1px solid var(--b);border-radius:10px;padding:14px 16px}
+.mk-provider-name{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:2px}
+.mk-provider-price{font-size:11px;color:var(--ac)}
+.mk-provider-note{font-size:10px;color:var(--t3);margin-top:4px;line-height:1.4}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:2px;max-width:800px;margin:0 auto}
+.faq-item{background:var(--bg2);border:1px solid var(--b);border-radius:12px;overflow:hidden}
+.faq-q{padding:20px 24px;font-size:15px;font-weight:600;color:var(--t1);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .2s}
+.faq-q:hover{color:var(--ac)}
+.faq-icon{font-size:18px;color:var(--t3);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--ac)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s}
+.faq-a-inner{padding:0 24px 20px;font-size:14px;color:var(--t2);line-height:1.8}
+.faq-a-inner a{color:var(--ac)}
+.faq-item.open .faq-a{max-height:400px}
+
+/* ── ENTERPRISE CTA ── */
+.enterprise-cta{background:var(--bg2);border:1px solid var(--b);border-radius:20px;padding:48px;text-align:center;max-width:700px;margin:0 auto}
+.enterprise-cta h3{font-size:26px;font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+.enterprise-cta p{font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:28px}
+.enterprise-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-ac{padding:12px 28px;border-radius:10px;background:var(--grad);color:#000;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all .2s}
+.btn-ac:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,245,160,.25)}
+.btn-outline{padding:12px 28px;border-radius:10px;background:transparent;color:var(--t2);font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--b2);transition:all .2s}
+.btn-outline:hover{border-color:var(--ac);color:var(--ac)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--b);padding:40px;text-align:center;position:relative;z-index:1}
+.footer-logo{display:flex;align-items:center;gap:8px;justify-content:center;font-weight:800;font-size:18px;margin-bottom:20px}
+.footer-links{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.footer-links a{font-size:13px;color:var(--t3);transition:color .2s}
+.footer-links a:hover{color:var(--t1)}
+.footer-copy{font-size:12px;color:var(--t3)}
+
+/* ── UTIL ── */
+.relative{position:relative;z-index:1}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav><a href="/" class="nav-logo"><img src="data:image/png;base64,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" alt="Valatir" style="height:22px;width:auto;object-fit:contain;mix-blend-mode:screen"></a><div class="nav-links"><a href="/" >Home</a><a href="/features" >Features</a><a href="/pricing" class="active">Pricing</a><a href="/enterprise" >Enterprise</a><a href="/developers" >Developers</a><a href="/build" >Live Build</a></div><div style="display:flex;gap:10px"><a href="/#waitlist"><button class="btn-ghost">Join waitlist</button></a><a href="/#waitlist"><button class="btn-primary">Early access →</button></a></div></nav>
+
+<!-- HERO -->
+<div class="hero relative">
+  <div class="hero-glow"></div>
+  <div class="badge"><span class="badge-dot"></span> Launching August 1, 2026</div>
+  <h1>One price.<br><span class="grad-text">Every AI model.</span></h1>
+  <p class="hero-sub">Stop paying $200+/month across 12 AI tools with no integration between them. Valatir replaces all of them — starting at CA$29/month.</p>
+  <div class="billing-toggle">
+    <button class="toggle-opt active" id="mo-btn" onclick="setBilling('monthly')">Monthly</button>
+    <button class="toggle-opt" id="yr-btn" onclick="setBilling('annual')">Annual <span class="toggle-save">Save 17%</span></button>
+  </div>
+</div>
+
+<!-- PRICING CARDS -->
+<div class="pricing-grid">
+
+  <!-- Free -->
+  <div class="tier-card fade-up">
+    <div class="tier-name">Free</div>
+    <div class="tier-price tier-price-free">CA$0</div>
+    <div class="tier-period">forever</div>
+    <div class="tier-desc">Try Valatir with no commitment. Good for occasional use.</div>
+    <div class="tier-divider"></div>
+    <ul class="tier-feats">
+      <li>50 messages / month</li>
+      <li>Groq + Haiku models only</li>
+      <li>Basic chat workspace</li>
+      <li>5 file uploads / month</li>
+      <li class="muted">No code sandbox</li>
+      <li class="muted">No web search</li>
+      <li class="muted">No image generation</li>
+    </ul>
+    <button class="tier-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join waitlist</button>
+  </div>
+
+  <!-- Indie -->
+  <div class="tier-card fade-up" style="animation-delay:.05s">
+    <div class="tier-name">Indie</div>
+    <div class="tier-price"><span class="grad-text" id="indie-price">CA$12</span></div>
+    <div class="tier-period" id="indie-period">/month</div>
+    <div class="tier-desc">Solo creators and side projects. All models, unlimited messages.</div>
+    <div class="tier-divider"></div>
+    <ul class="tier-feats">
+      <li>Unlimited messages</li>
+      <li>All 200+ AI models</li>
+      <li>Bring your own API keys</li>
+      <li>50 file uploads / month</li>
+      <li>Web search (100/mo)</li>
+      <li class="muted">No code sandbox</li>
+      <li class="muted">No image generation</li>
+    </ul>
+    <button class="tier-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join waitlist</button>
+  </div>
+
+  <!-- Pro -->
+  <div class="tier-card popular fade-up" style="animation-delay:.1s">
+    <div class="tier-pop-badge">MOST POPULAR</div>
+    <div class="tier-name" style="color:var(--ac)">Pro</div>
+    <div class="tier-price"><span class="grad-text" id="pro-price">CA$29</span></div>
+    <div class="tier-period" id="pro-period">/month</div>
+    <div class="tier-desc">Everything you need for serious AI work. The one to get.</div>
+    <div class="tier-divider"></div>
+    <ul class="tier-feats">
+      <li>Unlimited messages</li>
+      <li>All 200+ AI models</li>
+      <li>Bring your own API keys</li>
+      <li>Managed API Keys add-on</li>
+      <li>Unlimited file uploads</li>
+      <li>Code sandbox & debugger</li>
+      <li>Web search (unlimited)</li>
+      <li>Image generation</li>
+      <li>Brain graph workspace</li>
+      <li>2 devices</li>
+    </ul>
+    <button class="tier-btn primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get Pro →</button>
+  </div>
+
+  <!-- Studio -->
+  <div class="tier-card fade-up" style="animation-delay:.15s">
+    <div class="tier-name">Studio</div>
+    <div class="tier-price"><span class="grad-text" id="studio-price">CA$69</span></div>
+    <div class="tier-period" id="studio-period">/month</div>
+    <div class="tier-desc">Pro + the full media suite. For creators who need audio, video, and image generation built in.</div>
+    <div class="tier-divider"></div>
+    <ul class="tier-feats">
+      <li>Everything in Pro</li>
+      <li>DAW workspace (audio)</li>
+      <li>Video generation</li>
+      <li>Advanced image editing</li>
+      <li>Voice synthesis (ElevenLabs)</li>
+      <li>Music generation (Suno)</li>
+      <li>3D model preview</li>
+      <li>3 devices</li>
+    </ul>
+    <button class="tier-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join waitlist</button>
+  </div>
+
+  <!-- Team -->
+  <div class="tier-card fade-up" style="animation-delay:.2s">
+    <div class="tier-name">Team</div>
+    <div class="tier-price"><span class="grad-text" id="team-price">CA$99</span></div>
+    <div class="tier-period" id="team-period">/seat/month</div>
+    <div class="tier-desc">Shared workspaces, admin controls, and usage analytics for small teams.</div>
+    <div class="tier-divider"></div>
+    <ul class="tier-feats">
+      <li>Everything in Studio</li>
+      <li>Shared team workspaces</li>
+      <li>Admin dashboard</li>
+      <li>Usage analytics per seat</li>
+      <li>Shared API key pool</li>
+      <li>Priority support</li>
+      <li>Min. 2 seats</li>
+    </ul>
+    <button class="tier-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join waitlist</button>
+  </div>
+
+  <!-- Business -->
+  <div class="tier-card fade-up" style="animation-delay:.25s">
+    <div class="tier-name">Business</div>
+    <div class="tier-price"><span class="grad-text" id="biz-price">CA$249</span></div>
+    <div class="tier-period" id="biz-period">/month</div>
+    <div class="tier-desc">Custom deployment, SSO, SLA, and dedicated support for larger organisations.</div>
+    <div class="tier-divider"></div>
+    <ul class="tier-feats">
+      <li>Everything in Team</li>
+      <li>SSO / SAML integration</li>
+      <li>Custom deployment</li>
+      <li>SLA (99.9% uptime)</li>
+      <li>Dedicated support channel</li>
+      <li>Custom AI model fine-tuning</li>
+      <li>Audit logs & compliance</li>
+      <li>Unlimited seats</li>
+    </ul>
+    <button class="tier-btn" onclick="window.location.href='mailto:gabriel@valatir.ai?subject=Business%20enquiry'">Contact us →</button>
+  </div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="section">
+  <div class="section-center">
+    <div class="section-badge">📊 Full Comparison</div>
+    <h2 class="section-title">Everything, side by side.</h2>
+    <p class="section-sub">Every feature, every tier. No asterisks.</p>
+  </div>
+
+  <div class="comp-wrap">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Free</th>
+          <th>Indie</th>
+          <th class="popular-col">Pro</th>
+          <th>Studio</th>
+          <th>Team</th>
+          <th>Business</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="comp-group"><th colspan="7">Core AI</th></tr>
+        <tr>
+          <td>Messages / month</td>
+          <td>50</td><td>Unlimited</td><td class="popular-col">Unlimited</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td>
+        </tr>
+        <tr>
+          <td>AI models available</td>
+          <td>2</td><td>200+</td><td class="popular-col">200+</td><td>200+</td><td>200+</td><td>200+ + custom</td>
+        </tr>
+        <tr>
+          <td>Bring your own API keys</td>
+          <td><span class="cross">–</span></td><td><span class="check">✓</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Managed API Keys</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col">Add-on</td><td>Add-on</td><td>Included</td><td>Included</td>
+        </tr>
+        <tr>
+          <td>Context window</td>
+          <td>32K</td><td>200K</td><td class="popular-col">200K</td><td>200K</td><td>200K</td><td>200K</td>
+        </tr>
+        <tr>
+          <td>Multi-model routing</td>
+          <td><span class="cross">–</span></td><td><span class="check">✓</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+
+        <tr class="comp-group"><th colspan="7">Workspaces & Tools</th></tr>
+        <tr>
+          <td>Chat workspace</td>
+          <td><span class="check">✓</span></td><td><span class="check">✓</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Code IDE workspace</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Code sandbox (execution)</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Brain graph (knowledge)</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Document workspace</td>
+          <td><span class="cross">–</span></td><td><span class="check">✓</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Web research workspace</td>
+          <td><span class="cross">–</span></td><td>100/mo</td><td class="popular-col">Unlimited</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td>
+        </tr>
+        <tr>
+          <td>Automation workspace</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Image editor workspace</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>DAW (audio) workspace</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="cross">–</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Video generation workspace</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="cross">–</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+
+        <tr class="comp-group"><th colspan="7">Files & Data</th></tr>
+        <tr>
+          <td>File uploads / month</td>
+          <td>5</td><td>50</td><td class="popular-col">Unlimited</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td>
+        </tr>
+        <tr>
+          <td>File types supported</td>
+          <td>PDF, TXT</td><td>20+</td><td class="popular-col">68+</td><td>68+</td><td>68+</td><td>68+</td>
+        </tr>
+        <tr>
+          <td>Local SQLite storage</td>
+          <td><span class="check">✓</span></td><td><span class="check">✓</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>RAG document indexing</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+
+        <tr class="comp-group"><th colspan="7">Team & Admin</th></tr>
+        <tr>
+          <td>Seats / licences</td>
+          <td>1</td><td>1</td><td class="popular-col">2 devices</td><td>3 devices</td><td>Unlimited</td><td>Unlimited</td>
+        </tr>
+        <tr>
+          <td>Shared team workspaces</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="cross">–</span></td><td><span class="cross">–</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Admin dashboard</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="cross">–</span></td><td><span class="cross">–</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>SSO / SAML</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="cross">–</span></td><td><span class="cross">–</span></td><td><span class="cross">–</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Audit logs</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="cross">–</span></td><td><span class="cross">–</span></td><td><span class="cross">–</span></td><td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>SLA</td>
+          <td><span class="cross">–</span></td><td><span class="cross">–</span></td><td class="popular-col"><span class="cross">–</span></td><td><span class="cross">–</span></td><td><span class="cross">–</span></td><td>99.9%</td>
+        </tr>
+        <tr>
+          <td>Support</td>
+          <td>Community</td><td>Email</td><td class="popular-col">Email</td><td>Priority</td><td>Priority</td><td>Dedicated</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MANAGED KEYS -->
+<div class="section" style="padding-bottom:0">
+  <div class="mk-card">
+    <div class="mk-glow"></div>
+    <div class="mk-grid">
+      <div>
+        <div class="mk-tag">Add-on · Pro & above</div>
+        <div class="mk-title">Managed API Keys — <span class="grad-text">from CA$9/mo</span></div>
+        <div class="mk-desc">Don't want to manage API accounts with Anthropic, OpenAI, and Google separately? We handle it. One add-on gives you access to all major providers through Valatir's pool — with no sign-ups, no rate-limit headaches, and no API billing surprises.</div>
+        <div class="mk-steps">
+          <div class="mk-step">
+            <div class="mk-step-num">1</div>
+            <div class="mk-step-text"><strong>Enable in settings</strong><span>One toggle in your Valatir dashboard. No external accounts needed.</span></div>
+          </div>
+          <div class="mk-step">
+            <div class="mk-step-num">2</div>
+            <div class="mk-step-text"><strong>Pick your provider pool</strong><span>Choose which models you want access to — Claude, GPT-4o, Gemini, Groq, or all of them.</span></div>
+          </div>
+          <div class="mk-step">
+            <div class="mk-step-num">3</div>
+            <div class="mk-step-text"><strong>Usage billed monthly</strong><span>We charge exactly what providers charge us, plus a small pool management fee. No markup on tokens.</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;font-weight:600;margin-bottom:12px">Provider access included</div>
+        <div class="mk-providers">
+          <div class="mk-provider">
+            <div class="mk-provider-name">Claude (Anthropic)</div>
+            <div class="mk-provider-price">Sonnet, Opus, Haiku</div>
+            <div class="mk-provider-note">Best for reasoning, code, and long-form analysis</div>
+          </div>
+          <div class="mk-provider">
+            <div class="mk-provider-name">GPT-4o (OpenAI)</div>
+            <div class="mk-provider-price">GPT-4o, GPT-4o mini</div>
+            <div class="mk-provider-note">Strong for vision, function calling, broad general tasks</div>
+          </div>
+          <div class="mk-provider">
+            <div class="mk-provider-name">Gemini (Google)</div>
+            <div class="mk-provider-price">Gemini 2.0 Pro, Flash</div>
+            <div class="mk-provider-note">2M context window, multimodal, fast and affordable</div>
+          </div>
+          <div class="mk-provider">
+            <div class="mk-provider-name">Groq</div>
+            <div class="mk-provider-price">Llama 3, Mixtral</div>
+            <div class="mk-provider-note">Fastest inference available. Free-tier fallback built-in</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--t3);line-height:1.6;padding:12px;background:var(--bg3);border-radius:8px;border:1px solid var(--b)">
+          <strong style="color:var(--t2)">Bring your own keys?</strong> Always supported. Managed Keys is optional — if you already have API accounts, just paste your keys into Valatir settings and you pay providers directly at their rates.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section" style="padding-top:80px">
+  <div class="section-center">
+    <div class="section-badge">💬 Common questions</div>
+    <h2 class="section-title">Honest answers.</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why not just use ChatGPT Plus for $20? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">ChatGPT Plus gives you one model (GPT-4o), one interface, and no integration between tools. The moment you need image generation, code execution, web search, and document analysis in the same workflow, you're opening three or four separate tabs — and paying for each of them. Valatir puts all of that in one application, with 200+ models to route tasks to the one that actually handles it best. For most professionals, the math works out at CA$29 vs CA$150–$200/month in fragmented subscriptions.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is my data sent to the cloud? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Valatir is local-first. All your files, conversation history, and workspace state are stored in a local SQLite database on your machine — not on our servers. The only data that leaves your computer are the messages and files you explicitly send to an AI provider (Claude, OpenAI, etc.) as part of a request. We never store your conversations server-side. You can review our <a href="/privacy">Privacy Policy</a> for the full picture.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need to sign up for Anthropic and OpenAI separately? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Not unless you want to. The Managed API Keys add-on (from CA$9/month on Pro+) handles all provider access in one place. If you prefer to bring your own API keys and pay providers directly, that's fully supported too — just paste them into Valatir's settings. Either way works.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What's the difference between Pro and Studio? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Pro is the complete AI platform: all models, all core workspaces (chat, code, brain graph, image editor, documents, web research, automation), and unlimited everything. Studio adds the media production stack: the DAW workspace for audio generation and editing, video generation, voice synthesis via ElevenLabs, music generation via Suno, and 3D model preview. If you're not a content creator or audio/video professional, Pro is almost certainly the right tier.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I cancel any time? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Cancel any time — monthly plans stop at the end of your billing cycle, annual plans refund the remaining months pro-rated. Billing is handled by LemonSqueezy, a trusted merchant of record that processes payments for thousands of software companies.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does "200+ models" actually mean? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Valatir routes requests through an intelligent multi-provider system. The 200+ figure covers models from Anthropic (Claude family), OpenAI (GPT-4o family), Google (Gemini family), Meta (Llama 3 family via Groq and others), Mistral, Cohere, and a growing list of OpenRouter-compatible models. You can set routing rules — e.g., "use Claude for reasoning tasks, Groq Llama for quick drafts, Gemini Flash for image analysis" — or let the platform choose automatically based on task type.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is there a student or nonprofit discount? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Not at launch, but we're planning a verified student/nonprofit programme for Q2 2027. In the meantime, the Free tier covers basic usage and the early access waitlist includes 3 months of Pro free for early adopters — <a href="#waitlist">join the list below.</a></div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How does annual billing work? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Annual plans are billed once per year at 10 months' cost (2 months free — approximately 17% off). You can switch between monthly and annual at any time. If you upgrade from monthly to annual mid-cycle, we'll credit your remaining monthly days against the annual price.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ENTERPRISE CTA -->
+<div class="section">
+  <div class="enterprise-cta">
+    <h3>Need something custom?</h3>
+    <p>Custom deployment, dedicated infrastructure, white-labelling, or a procurement process that doesn't fit standard tiers — talk to us. Business is fully configurable.</p>
+    <div class="enterprise-cta-btns">
+      <a href="mailto:gabriel@valatir.ai?subject=Business%20enquiry"><button class="btn-ac">Contact Gabriel directly →</button></a>
+      <button class="btn-outline" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join waitlist first</button>
+    </div>
+  </div>
+</div>
+
+<!-- WAITLIST -->
+<section id="waitlist" style="padding:0 40px 100px">
+  <div style="max-width:600px;margin:0 auto;background:linear-gradient(135deg,rgba(0,245,160,.06),rgba(124,92,252,.06));border:1px solid rgba(0,245,160,.2);border-radius:20px;padding:48px;text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(124,92,252,.18),transparent 70%);pointer-events:none"></div>
+    <div class="badge" style="display:inline-flex;margin-bottom:20px"><span class="badge-dot"></span> Early access — 3 months Pro free</div>
+    <h3 style="font-size:28px;font-weight:900;letter-spacing:-1px;margin-bottom:12px">Join the waitlist</h3>
+    <p style="font-size:15px;color:var(--t2);margin-bottom:28px;line-height:1.7">First 500 users get 3 months of Pro free. No credit card required to reserve your spot. Launching August 1, 2026.</p>
+    <div style="display:flex;gap:10px;max-width:420px;margin:0 auto">
+      <input id="emailInput" type="email" placeholder="your@email.com" style="flex:1;padding:12px 16px;border-radius:9px;border:1px solid var(--b2);background:rgba(255,255,255,.05);color:var(--t1);font-size:14px;outline:none;font-family:inherit">
+      <button onclick="handleSignup()" style="padding:12px 20px;border-radius:9px;background:var(--grad);color:#000;font-weight:700;font-size:14px;border:none;cursor:pointer;white-space:nowrap">Join →</button>
+    </div>
+    <div id="signupNote" style="font-size:12px;color:var(--t3);margin-top:12px">No spam. Launching August 1, 2026.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer><div class="footer-logo"><img src="data:image/png;base64,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" alt="Valatir" style="height:24px;width:auto;object-fit:contain;mix-blend-mode:screen"></div><div class="footer-links"><a href="/">Home</a><a href="/features">Features</a><a href="/pricing">Pricing</a><a href="/enterprise">Enterprise</a><a href="/developers">Developers</a><a href="/build">Live Build</a><a href="/investors">Investors</a><a href="/about">Manifesto</a><a href="mailto:gabriel@valatir.ai">Contact</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div><div class="footer-copy">© 2026 Valatir AI · Ontario, Canada · valatir.com</div></footer>
+
+<script>
+// billing toggle
+const prices = {
+  monthly: { indie:'CA$12',pro:'CA$29',studio:'CA$69',team:'CA$99',biz:'CA$249',
+              period:{indie:'/month',pro:'/month',studio:'/month',team:'/seat/month',biz:'/month'} },
+  annual:  { indie:'CA$120',pro:'CA$290',studio:'CA$690',team:'CA$990',biz:'CA$2,490',
+              period:{indie:'/year',pro:'/year',studio:'/year',team:'/seat/year',biz:'/year'} }
+};
+function setBilling(mode) {
+  document.getElementById('mo-btn').classList.toggle('active', mode==='monthly');
+  document.getElementById('yr-btn').classList.toggle('active', mode==='annual');
+  const p = prices[mode];
+  ['indie','pro','studio','team','biz'].forEach(t => {
+    document.getElementById(t+'-price').textContent = p[t];
+    document.getElementById(t+'-period').textContent = p.period[t];
+  });
+}
+
+// faq
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// waitlist
+function handleSignup() {
+  const email = document.getElementById('emailInput').value.trim();
+  const note = document.getElementById('signupNote');
+  if (!email || !email.includes('@')) {
+    note.textContent = 'Please enter a valid email address.';
+    note.style.color = '#f87171'; return;
+  }
+  note.textContent = '✓ You\'re on the list. We\'ll be in touch before August 1.';
+  note.style.color = 'var(--ac)';
+  document.getElementById('emailInput').value = '';
+}
+document.getElementById('emailInput').addEventListener('keydown', e => { if(e.key==='Enter') handleSignup(); });
+
+// scroll-hide nav
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const nav = document.querySelector('nav');
+  nav.style.transform = y > lastY && y > 100 ? 'translateY(-100%)' : 'translateY(0)';
+  nav.style.transition = 'transform .3s ease';
+  lastY = y;
+});
+
+// scroll animations
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }});
+}, {threshold:.1});
+document.querySelectorAll('.tier-card').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='opacity .5s ease, transform .5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
